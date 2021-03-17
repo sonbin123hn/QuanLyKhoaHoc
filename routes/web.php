@@ -35,12 +35,8 @@ Route::group([
     Route::get('/user/profile','UserController@edit')->name('admin.profile');
     Route::post('/user/profile','UserController@update')->name('admin.profile');
     //service
-    Route::get('/service','ServiceController@index')->name('admin.service');
-    Route::get('/service/add','ServiceController@create')->name('admin.create');
-    Route::post('/service/add','ServiceController@store')->name('admin.store');
-    Route::get('/service/remove/{id}','ServiceController@delete')->name('admin.service.remove');
-    Route::get('/service/edit/{id}','ServiceController@edit')->name('admin.service.edit');
-    Route::post('/service/edit/{id}','ServiceController@update')->name('admin.service.update');
+    Route::get('/browsing-account','BrowsingAccountController@index')->name('admin.service');
+    Route::get('/browsing-account/remove/{id}','BrowsingAccountController@delete')->name('admin.service.remove');
     //receipts
     Route::get('/receipts','ReceiptsController@index')->name('admin.receipts');
     //ajax receipts

@@ -17,9 +17,9 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/service')}}" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/browsing-account')}}" aria-expanded="false">
                                 <i class="mdi mdi-border-none"></i>
-                                <span class="hide-menu">Service</span>
+                                <span class="hide-menu">Account Browsing</span>
                             </a>
                         </li>
                          <li class="sidebar-item">
