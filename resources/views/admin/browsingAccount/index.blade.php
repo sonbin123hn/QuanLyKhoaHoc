@@ -4,7 +4,7 @@
 <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">service</h4>
+                        <h4 class="page-title">browsings</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
@@ -36,37 +36,32 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Stt</th>
-                                    <th scope="col">Name Service</th>
-                                    <th scope="col">Detail</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">SDT</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($service as $value)
+                                @foreach($browsings as $value)
                                     <tr>
                                         <th scope="row">{{ $value['id'] }}</th>
-                                        <td>{{$value['service_name']}}</td>
-                                        <td>{{$value['detail']}}</td>
-                                        <td>{{$value['price']}}</td>
+                                        <td>{{$value['email']}}</td>
+                                        <td>{{$value['name']}}</td>
+                                        <td>{{$value['phone']}}</td>
                                         <td>
-                                        <a href="{{ route('admin.service.remove', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to delete this service ?')">
-                                        <i style="font-size:24px;margin-right:5px;" class="fa fa-trash"></i>
-                                        </a>
-                                            <a href="{{ route('admin.service.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
+                                            <a href="{{ route('admin.browsings.store', ['id' => $value['id']]) }}"onclick="return confirm('Are you sure want to add member?')"><i style="font-size:24px" class="fa">&#xf044;</i></a>
+                                            <a href="{{ route('admin.browsings.remove', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to delete this Member Account ?')">
+                                            <i style="font-size:24px;margin-right:5px;" class="fa fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        You are on page {{$service->currentPage()}}
-                        <a style="font-size: 20px;margin-right: 20px;" href="{{$service->previousPageUrl()}}" id="previousPagebtn"><</a>
-                        <a style="font-size: 20px;" href="{{$service->nextPageUrl()}}" id="nextPagebtn">></a>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <button class="btn btn-success"><a style="color: white;" href="{{ url('/admin/service/add')}}">Add service</a></button>
-                        </div>
+                        You are on page {{$browsings->currentPage()}}
+                        <a style="font-size: 20px;margin-right: 20px;" href="{{$browsings->previousPageUrl()}}" id="previousPagebtn"><</a>
+                        <a style="font-size: 20px;" href="{{$browsings->nextPageUrl()}}" id="nextPagebtn">></a>
                     </div>
             </div>
 @endsection

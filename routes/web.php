@@ -34,9 +34,10 @@ Route::group([
     //profile
     Route::get('/user/profile','UserController@edit')->name('admin.profile');
     Route::post('/user/profile','UserController@update')->name('admin.profile');
-    //service
-    Route::get('/browsing-account','BrowsingAccountController@index')->name('admin.service');
-    Route::get('/browsing-account/remove/{id}','BrowsingAccountController@delete')->name('admin.service.remove');
+    //browsings
+    Route::get('/browsing-account','BrowsingAccountController@index')->name('admin.browsings');
+    Route::get('/browsing-account/add/{id}','BrowsingAccountController@show')->name('admin.browsings.store');
+    Route::get('/browsing-account/remove/{id}','BrowsingAccountController@delete')->name('admin.browsings.remove');
     //receipts
     Route::get('/receipts','ReceiptsController@index')->name('admin.receipts');
     //ajax receipts

@@ -17,10 +17,11 @@ class AdminLoginAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if( Auth::check() && Auth::user()->is_admin == 1 ){
+        if( Auth::check() && Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2 && Auth::user()->status == 1){
             return $next($request);
         }else{
-            return redirect('/admin/login');
+            Auth::logout();
+            return redirect('/admin/login')->with('message', 'Bạn Ko Có quyền truy cập or tài khoản đã bị khóa');
         }
     }
 }

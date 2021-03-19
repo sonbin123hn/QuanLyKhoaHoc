@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bill;
+use App\Models\Classes;
+use App\Models\Infor_Temp;
+use App\Models\User_Class;
 use Illuminate\Http\Request;
 
 class BrowsingAccountController extends Controller
@@ -14,6 +18,7 @@ class BrowsingAccountController extends Controller
      */
     public function index()
     {
+        $browsings = Infor_Temp::paginate(3);
         return view('admin/browsingAccount/index')->with(compact("browsings"));
     }
 
@@ -46,7 +51,35 @@ class BrowsingAccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Infor_Temp::findOrFail($id);
+        dd($data);
+        exit();
+        try {
+            DB::beginTransaction();
+            $user = User::create([
+                'name' => $data['name'],
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+                'password' => Hash::make("usermember123"),
+            ]);
+            if($user){
+                $listClass = User_Class::create([
+                    'id_class' => $data['id_class'],
+                    'id_user' => $this->id
+                ]);
+                $bill = Bill::create([
+                    'amount' => Classes::Select('price')->Where("id_class",$data['id_class']),
+                    'id_user' => $this->id
+                ]);
+            }
+            $token = JWTAuth::fromUser($user);
+            $user = $user->setAttribute('token', $token);
+            DB::commit();
+            return $this->formatJson(AuthResource::class, $user);
+        } catch (Exception $ex) {
+            DB::rollBack();
+            throw $ex;
+        }
     }
 
     /**
@@ -81,5 +114,10 @@ class BrowsingAccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function delete($id)
+    {
+        echo "ASd";
+        exit();
     }
 }
