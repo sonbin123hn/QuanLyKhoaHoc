@@ -38,6 +38,26 @@ Route::group([
     Route::get('/browsing-account','BrowsingAccountController@index')->name('admin.browsings');
     Route::get('/browsing-account/add/{id}','BrowsingAccountController@show')->name('admin.browsings.store');
     Route::get('/browsing-account/remove/{id}','BrowsingAccountController@delete')->name('admin.browsings.remove');
+    //course
+    Route::get('/course','CourseController@index')->name('admin.course');
+    Route::get('/course/add','CourseController@create')->name('admin.course.create');
+    Route::post('/course/add','CourseController@store')->name('admin.course.store');
+    Route::get('/course/update/{id}','CourseController@edit')->name('admin.course.edit');
+    Route::post('/course/update/{id}','CourseController@update')->name('admin.course.update');
+    //teacher
+    Route::get('/teacher','TeacherController@index')->name('admin.teacher');
+    Route::get('/teacher/add','TeacherController@create')->name('admin.teacher.create');
+    Route::post('/teacher/add','TeacherController@store')->name('admin.teacher.store');
+    Route::get('/teacher/update/{id}','TeacherController@edit')->name('admin.teacher.edit');
+    Route::post('/teacher/update/{id}','TeacherController@update')->name('admin.teacher.update');
+    Route::get('/teacher/lock/{id}','TeacherController@lock')->name('admin.teacher.lock');
+    //subject
+    Route::get('/subject','SubjectController@index')->name('admin.subject');
+    Route::get('/subject/add','SubjectController@create')->name('admin.subject.create');
+    Route::post('/subject/add','SubjectController@store')->name('admin.subject.store');
+    Route::get('/subject/update/{id}','SubjectController@edit')->name('admin.subject.edit');
+    Route::post('/subject/update/{id}','SubjectController@update')->name('admin.subject.update');
+    Route::get('/subject/lock/{id}','SubjectController@lock')->name('admin.subject.lock');
     //receipts
     Route::get('/receipts','ReceiptsController@index')->name('admin.receipts');
     //ajax receipts
