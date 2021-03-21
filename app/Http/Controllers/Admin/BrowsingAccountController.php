@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\browsing\BrowsingRequest;
 use App\Models\Bill;
 use App\Models\Classes;
 use App\Models\Infor_Temp;
+use App\Models\User;
 use App\Models\User_Class;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class BrowsingAccountController extends Controller
 {
@@ -19,7 +24,8 @@ class BrowsingAccountController extends Controller
     public function index()
     {
         $browsings = Infor_Temp::paginate(3);
-        return view('admin/browsingAccount/index')->with(compact("browsings"));
+        $classes = Classes::all();
+        return view('admin/browsingAccount/index')->with(compact("browsings","classes"));
     }
 
     /**
@@ -52,8 +58,6 @@ class BrowsingAccountController extends Controller
     public function show($id)
     {
         $data = Infor_Temp::findOrFail($id);
-        dd($data);
-        exit();
         try {
             DB::beginTransaction();
             $user = User::create([
@@ -61,21 +65,22 @@ class BrowsingAccountController extends Controller
                 'phone' => $data['phone'],
                 'email' => $data['email'],
                 'password' => Hash::make("usermember123"),
+                'status' => 1,
+                'is_admin' => 3,
             ]);
             if($user){
                 $listClass = User_Class::create([
                     'id_class' => $data['id_class'],
-                    'id_user' => $this->id
+                    'id_user' => $user->id,
                 ]);
                 $bill = Bill::create([
-                    'amount' => Classes::Select('price')->Where("id_class",$data['id_class']),
-                    'id_user' => $this->id
+                    'amount' => $data['price'],
+                    'id_user' =>  $user->id,
                 ]);
+                $data->delete();
             }
-            $token = JWTAuth::fromUser($user);
-            $user = $user->setAttribute('token', $token);
             DB::commit();
-            return $this->formatJson(AuthResource::class, $user);
+            return redirect('/admin/browsing-account')->with('success','user infor Update is success');
         } catch (Exception $ex) {
             DB::rollBack();
             throw $ex;
@@ -90,7 +95,9 @@ class BrowsingAccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $browsings = Infor_Temp::findOrFail($id);
+        $classes = Classes::all();
+        return view('admin/browsingAccount/edit')->with(compact("browsings","classes"));
     }
 
     /**
@@ -100,9 +107,15 @@ class BrowsingAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BrowsingRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $browsings = Infor_Temp::findOrFail($id);
+        if($browsings->update($data)){
+            return redirect('/admin/browsing-account')->with('success','user infor Update is success');
+        }
+        return back()->with('error','teacher Update failed'); 
+
     }
 
     /**

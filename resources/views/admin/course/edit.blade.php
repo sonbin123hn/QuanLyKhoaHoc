@@ -4,7 +4,7 @@
 <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">Country</h4>
+                        <h4 class="page-title">course</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
@@ -46,26 +46,26 @@
                 <form action="" method="post">
                    @csrf
                    <div class="form-group">
-                        <label class="col-md-12">Name Service</label>
+                        <label class="col-md-12">Name course</label>
                         <div class="col-md-12">
-                            <input type="text"  name="service_name" placeholder="Please enter service " class="form-control form-control-line">
+                            <input type="text"  name="name" value="{{ $course->name }}" class="form-control form-control-line">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">Detail</label>
+                        <label class="col-md-12">Day Start</label>
                         <div class="col-md-12">
-                            <input type="text"  name="detail" placeholder="Please enter detail " class="form-control form-control-line">
+                            <input type="date"  name="day_start" value="{{ $course->day_start }}" class="form-control form-control-line">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">Price</label>
+                        <label class="col-md-12">Day End</label>
                         <div class="col-md-12">
-                            <input type="text"  name="price" placeholder="Please enter price " class="form-control form-control-line">
+                            <input type="date"  name="day_end" value="{{ $course->day_end }}" class="form-control form-control-line">
                         </div>
                     </div>
                    <div class="form-group">
                         <div class="col-sm-12">
-                            <button class="btn btn-success">Add Service</button>
+                            <button class="btn btn-success">Update course</button>
                         </div>
                     </div>
                 </form>

@@ -39,6 +39,8 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">SDT</th>
+                                    <th scope="col">Class</th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -49,10 +51,17 @@
                                         <td>{{$value['email']}}</td>
                                         <td>{{$value['name']}}</td>
                                         <td>{{$value['phone']}}</td>
+                                        
+                                        @foreach($classes as $val)
+                                            @if($val['id'] == $value['id_class'])
+                                            <td>{{ $val['name'] }}</td>
+                                            <td>{{ $val['price']}}</td>
+                                            @endif
+                                        @endforeach
                                         <td>
-                                            <a href="{{ route('admin.browsings.store', ['id' => $value['id']]) }}"onclick="return confirm('Are you sure want to add member?')"><i style="font-size:24px" class="fa">&#xf044;</i></a>
-                                            <a href="{{ route('admin.browsings.remove', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to delete this Member Account ?')">
-                                            <i style="font-size:24px;margin-right:5px;" class="fa fa-trash"></i>
+                                            <a href="{{ route('admin.browsings.store', ['id' => $value['id']]) }}"onclick="return confirm('Are you sure want to add member?')"><i class="fa fa-user-plus"></i></a>
+                                            <a href="{{ route('admin.browsings.edit', ['id' => $value['id']]) }}"><i class="fa">&#xf044;</i></a>
+                                            <a href="{{ route('admin.browsings.remove', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to delete this Member Account ?')"><i class="fa fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>

@@ -4,7 +4,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">Service</h4>
+            <h4 class="page-title">Classes</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
@@ -46,36 +46,59 @@
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="col-md-12">email</label>
+            <label class="col-md-12">Name Class</label>
             <div class="col-md-12">
-                <input type="email" readonly name="email" value="{{ $browsings->email }}" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" name="name" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Name browsings</label>
+            <label class="col-md-12">Price</label>
             <div class="col-md-12">
-                <input type="text" name="name" value="{{ $browsings->name }}" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" name="price" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Phone</label>
+            <label class="col-md-12">Description</label>
             <div class="col-md-12">
-                <input type="text" name="phone" value="{{ $browsings->phone }}" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" name="description" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-12">Select class</label>
+            <label class="col-sm-12">Select Teacher</label>
             <div class="col-sm-12">
-                <select name="id_class" class="form-control form-control-line">
-                    @foreach($classes as $value)
-                    <option value="{{ $value['id'] }}" <?php echo $browsings->id_class == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
+                <select name="id_teacher" class="form-control form-control-line">
+                    <option value="">--</option>
+                    @foreach($teacher as $value)
+                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-12">Select Subject</label>
+            <div class="col-sm-12">
+                <select name="id_subject" class="form-control form-control-line">
+                    <option value="">--</option>
+                    @foreach($subject as $value)
+                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-12">Select Course</label>
+            <div class="col-sm-12">
+                <select name="id_course" class="form-control form-control-line">
+                    <option value="">--</option>
+                    @foreach($course as $value)
+                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <button class="btn btn-success">Update User infor</button>
+                <button class="btn btn-success">Add Class</button>
             </div>
         </div>
     </form>

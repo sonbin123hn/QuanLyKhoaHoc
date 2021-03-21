@@ -46,36 +46,26 @@
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="col-md-12">email</label>
+            <label class="col-md-12">Name subject</label>
             <div class="col-md-12">
-                <input type="email" readonly name="email" value="{{ $browsings->email }}" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" name="name" value="{{ $subject->name }}" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Name browsings</label>
+            <label class="col-md-12">Description</label>
             <div class="col-md-12">
-                <input type="text" name="name" value="{{ $browsings->name }}" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" name="description" value="{{ $subject->description }}" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Phone</label>
+            <label class="col-md-12">Image</label>
             <div class="col-md-12">
-                <input type="text" name="phone" value="{{ $browsings->phone }}" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-12">Select class</label>
-            <div class="col-sm-12">
-                <select name="id_class" class="form-control form-control-line">
-                    @foreach($classes as $value)
-                    <option value="{{ $value['id'] }}" <?php echo $browsings->id_class == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
+                <input type="text" name="image" value="{{ $subject->image }}" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <button class="btn btn-success">Update User infor</button>
+                <button class="btn btn-success">Update Service</button>
             </div>
         </div>
     </form>

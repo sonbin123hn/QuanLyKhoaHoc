@@ -4,16 +4,18 @@ namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Auth\CheckMailRequest;
+use App\Http\Requests\Api\Auth\LoginRequest;
 use App\Http\Requests\Api\Auth\RegisterRequest;
 use App\Http\Resources\Auth\AuthResource;
 use App\Models\Infor_Temp;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth as TymonJWTAuth;
+use JWTAuth;
+use Auth;
 
 class AuthController extends ApiController
 {
@@ -21,7 +23,7 @@ class AuthController extends ApiController
     {
         $credentials = $request->only('email', 'password');
         try {
-            if (!$token = JWTAuth::attempt($credentials)) {
+            if (!$token = TymonJWTAuth::attempt($credentials)) {
                 return $this->sendError400('Bad Request', 'Email hoặc mật khẩu không đúng.');
             }
         } catch (JWTException $e) {
