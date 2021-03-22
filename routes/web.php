@@ -58,6 +58,12 @@ Route::group([
     Route::get('/subject/update/{id}','SubjectController@edit')->name('admin.subject.edit');
     Route::post('/subject/update/{id}','SubjectController@update')->name('admin.subject.update');
     Route::get('/subject/lock/{id}','SubjectController@lock')->name('admin.subject.lock');
+    //classes
+    Route::get('/classes','ClassesController@index')->name('admin.classes');
+    Route::get('/classes/add','ClassesController@create')->name('admin.classes.create');
+    Route::post('/classes/add','ClassesController@store')->name('admin.classes.store');
+    Route::get('/classes/update/{id}','ClassesController@edit')->name('admin.classes.edit');
+    Route::post('/classes/update/{id}','ClassesController@update')->name('admin.classes.update');
     //receipts
     Route::get('/receipts','ReceiptsController@index')->name('admin.receipts');
     //ajax receipts

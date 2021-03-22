@@ -4,7 +4,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">subject</h4>
+            <h4 class="page-title">classes</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
@@ -33,7 +33,7 @@
         @endif
         <div class="form-group">
             <div class="col-sm-12">
-                <button class="btn btn-success"><a style="color: white;" href="{{ url('/admin/subject/add')}}">Add subject</a></button>
+                <button class="btn btn-success"><a style="color: white;" href="{{ url('/admin/classes/add')}}">Add classes</a></button>
             </div>
         </div>
         <table class="table">
@@ -41,33 +41,46 @@
                 <tr>
                     <th scope="col">Stt</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Image</th>
+                    <th scope="col">Teacher</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Course</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($subject as $value)
+                @foreach($classes as $value)
                 <tr>
                     <th scope="row">{{ $value['id'] }}</th>
                     <td>{{$value['name']}}</td>
+                    <td>{{$value['price']}}</td>
                     <td>{{$value['description']}}</td>
-                    <td><img src="/upload/{{$value['image']}}" width="100" /></td>
-                    <td>
-                        <a href="{{ route('admin.subject.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
-                        @if($value['status'] == 1)
-                            <a href="{{ route('admin.subject.lock', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to unlock this Member Account ?')"><i class="fa fa-unlock-alt"></i></a>
-                        @else
-                            <a href="{{ route('admin.subject.lock', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to lock this Member Account ?')"><i class="fa fa-lock"></i></a>
+                    @foreach($teacher as $val)
+                        @if($val['id'] == $value['id_teacher'])
+                        <td>{{ $val['name'] }}</td>
                         @endif
+                    @endforeach
+                    @foreach($subject as $val)
+                        @if($val['id'] == $value['id_subject'])
+                        <td>{{ $val['name'] }}</td>
+                        @endif
+                    @endforeach
+                    @foreach($course as $val)
+                        @if($val['id'] == $value['id_course'])
+                        <td>{{ $val['name'] }}</td>
+                        @endif
+                    @endforeach
+                    <td>
+                        <a href="{{ route('admin.classes.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        You are on page {{$subject->currentPage()}}
-        <a style="font-size: 20px;margin-right: 20px;" href="{{$subject->previousPageUrl()}}" id="previousPagebtn">
-            <</a> <a style="font-size: 20px;" href="{{$subject->nextPageUrl()}}" id="nextPagebtn">>
+        You are on page {{$classes->currentPage()}}
+        <a style="font-size: 20px;margin-right: 20px;" href="{{$classes->previousPageUrl()}}" id="previousPagebtn">
+            <</a> <a style="font-size: 20px;" href="{{$classes->nextPageUrl()}}" id="nextPagebtn">>
         </a>
     </div>
 

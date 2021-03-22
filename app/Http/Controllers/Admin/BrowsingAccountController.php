@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Bill;
 use App\Models\Classes;
 use App\Models\Infor_Temp;
+use App\Models\User;
 use App\Models\User_Class;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class BrowsingAccountController extends Controller
 {
@@ -52,7 +55,10 @@ class BrowsingAccountController extends Controller
     public function show($id)
     {
         $data = Infor_Temp::findOrFail($id);
-        dd($data);
+        // $price = User_Class::where('id_class',$data['id_class'])
+        // ->select('price')
+        // ->where('id_user', $user->id)
+        // ->get();
         exit();
         try {
             DB::beginTransaction();
@@ -61,16 +67,22 @@ class BrowsingAccountController extends Controller
                 'phone' => $data['phone'],
                 'email' => $data['email'],
                 'password' => Hash::make("usermember123"),
+                'status' => 1,
             ]);
             if($user){
+                // $price = User_Class::where('id_class',$data['id_class'])
+                //     ->select('price')
+                //     ->where('id_user', $user->id)
+                //     ->get();
                 $listClass = User_Class::create([
                     'id_class' => $data['id_class'],
-                    'id_user' => $this->id
+                    'id_user' => $user->id,
                 ]);
                 $bill = Bill::create([
                     'amount' => Classes::Select('price')->Where("id_class",$data['id_class']),
-                    'id_user' => $this->id
+                    'id_user' =>  $user->id,
                 ]);
+                $data->delete();
             }
             $token = JWTAuth::fromUser($user);
             $user = $user->setAttribute('token', $token);

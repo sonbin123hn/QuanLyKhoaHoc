@@ -77,7 +77,6 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::findOrFail($id);
         return view("admin/teacher/edit",compact('teacher'));
-        
     }
 
     /**
