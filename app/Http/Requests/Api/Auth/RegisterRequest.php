@@ -29,6 +29,7 @@ class RegisterRequest extends ApiRequest
             'name' => 'required',
             'email' => 'required|string|email|max:255|unique:infor_temps',
             'id_class' => 'required',
+            'price'=> 'required',
         ];
     }
 
@@ -41,6 +42,7 @@ class RegisterRequest extends ApiRequest
             'phone.min' => 'Số điện thoại có ít nhất 10 số', 
             'email.required' => 'Email là trường bắt buộc', 
             'id_class.required' => 'Mật khẩu là trường bắt buộc', 
+            'price.required' => 'Mật khẩu là trường bắt buộc', 
         ];
     }
 

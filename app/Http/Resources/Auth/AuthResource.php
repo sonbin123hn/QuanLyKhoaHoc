@@ -20,7 +20,6 @@ class AuthResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'avatar' => $this->avatar ? $this->avatar : config('settings.noImage'),
-            'is_admin' => $this->is_admin,
             'access_token' => $this->token
         ];
     }
