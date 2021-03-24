@@ -20,10 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 $publicRoutes = function () {
     Route::group(['prefix' => 'v1'], function () {
+        //authendicate
         Route::post('/auth/login',   'App\Http\Controllers\api\v1\AuthController@authenticate');
         Route::get('/auth/logout',   'App\Http\Controllers\api\v1\AuthController@logout');
         Route::post('/auth/register',   'App\Http\Controllers\api\v1\AuthController@register');
         Route::post('/auth/name',   'App\Http\Controllers\api\v1\AuthController@CheckEmail');
+        //Home
+        Route::get('/auth/home',   'App\Http\Controllers\api\v1\HomeController@home');
         
     });
 };

@@ -52,7 +52,7 @@
                     <th scope="row">{{ $value['id'] }}</th>
                     <td>{{$value['name']}}</td>
                     <td>{{$value['description']}}</td>
-                    <td><img src="/upload/{{$value['image']}}" width="100" /></td>
+                    <td><i class="{{$value['image']}}"></td>
                     <td>
                         <a href="{{ route('admin.subject.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
                         @if($value['status'] == 1)

@@ -42,13 +42,7 @@ class SubjectController extends Controller
         $data = $request->all();
         $file = $request->image;
         $data['status'] = true;
-        if(!empty($file)){
-            $data['image'] = $file->getClientOriginalName();
-        }
         if(Subject::create($data)){
-            if(!empty($file)){
-                $file->move('upload', $file->getClientOriginalName());
-            }
             return redirect('/admin/subject')->with('success','subject Add is success');
         }
         return back()->with('error','service Update failed'); 
@@ -84,18 +78,11 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SubjecUpdatetRequest $request, $id)
+    public function update(SubjectRequest $request, $id)
     {
         $subject = Subject::findOrFail($id);
         $data = $request->all();
-        $file = $request->image;
-        if(!empty($file)){
-            $data['image'] = $file->getClientOriginalName();
-        }
         if($subject->update($data)){
-            if(!empty($file)){
-                $file->move('upload', $file->getClientOriginalName());
-            }
             return redirect('/admin/subject')->with('success','Subject Update is success');
         }
         return back()->with('error','Subject Update failed'); 
