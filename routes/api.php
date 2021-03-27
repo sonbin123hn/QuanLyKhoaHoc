@@ -27,6 +27,8 @@ $publicRoutes = function () {
         Route::post('/auth/name',   'App\Http\Controllers\api\v1\AuthController@CheckEmail');
         //Home
         Route::get('/auth/home',   'App\Http\Controllers\api\v1\HomeController@home');
+        //class
+        Route::get('/auth/class/{id}', 'App\Http\Controllers\api\v1\ClassesController@classes');
         
     });
 };
