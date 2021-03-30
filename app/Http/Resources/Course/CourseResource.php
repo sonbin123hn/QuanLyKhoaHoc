@@ -18,7 +18,7 @@ class CourseResource extends JsonResource
             'id_course' => $this->id,
             'name' => $this->name,
             'day_start' => $this->day_start,
-            'day_stop' => $this->day_stop,
+            'day_end' => $this->day_end,
         ];
     }
 }

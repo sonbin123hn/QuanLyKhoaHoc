@@ -13,5 +13,6 @@ class Infor_Temp extends Model
         'email',
         'phone',
         'id_class',
+        'price',
     ];
 }

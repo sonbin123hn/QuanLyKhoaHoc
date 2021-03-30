@@ -15,7 +15,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="16x16" href="https://img.icons8.com/cotton/64/0000000/cat--v4.png">
-    <title>Boo's Home - Admin</title>
+    <title>AE Education - Admin</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -25,7 +25,7 @@
             <div class="container">
             <img src="https://img.icons8.com/cotton/64/0000000/cat--v4.png" style="width: 25px;" alt="">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                        Boo's Home - Admin
+                    AE Education- Admin
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

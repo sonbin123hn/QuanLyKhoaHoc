@@ -58,6 +58,24 @@ class BrowsingAccountController extends Controller
     public function show($id)
     {
         $data = Infor_Temp::findOrFail($id);
+        $check = User::where("email",$data['email'])->exists();
+        if($check){
+            try {
+                $listClass = User_Class::create([
+                    'id_class' => $data['id_class'],
+                    'id_user' => $data['id'],
+                ]);
+                $bill = Bill::create([
+                    'amount' => $data['price'],
+                    'id_user' =>  $data['id'],
+                ]);
+                $data->delete();
+                return redirect('/admin/browsing-account')->with('success','user infor Update is success');
+            } catch (Exception $ex) {
+                DB::rollBack();
+                throw $ex;
+            }
+        }
         try {
             DB::beginTransaction();
             $user = User::create([

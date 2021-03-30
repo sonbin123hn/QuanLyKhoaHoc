@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Auth\CheckMailRequest;
 use App\Http\Requests\Api\Auth\LoginRequest;
+use App\Http\Requests\Api\Auth\NewRegisterRequest;
 use App\Http\Requests\Api\Auth\RegisterRequest;
 use App\Http\Resources\Auth\AuthResource;
 use App\Models\Infor_Temp;
@@ -73,5 +74,19 @@ class AuthController extends ApiController
     {
         JWTAuth::invalidate(JWTAuth::getToken());
         return $this->sendMessage('Đăng xuất thành công!');
+    }
+    public function newRegister(NewRegisterRequest $request){
+        $user = Auth::user();
+        $new = Infor_Temp::create([
+            "name" => $user->name,
+            "email" => $user->email,
+            "id_class" => $request->id_class,
+            "phone" => $user->phone, 
+            "price"=> $request->price
+        ]);
+        if($new){
+            return $this->formatJson(AuthResource::class, $user);
+        }
+        return $this->sendMessage("can not register", 400);
     }
 }

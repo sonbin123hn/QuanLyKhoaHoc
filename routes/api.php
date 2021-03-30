@@ -28,14 +28,18 @@ $publicRoutes = function () {
         //Home
         Route::get('/auth/home',   'App\Http\Controllers\api\v1\HomeController@home');
         //class
+        Route::get('/auth/class', 'App\Http\Controllers\api\v1\ClassesController@allClasses');
         Route::get('/auth/class/{id}', 'App\Http\Controllers\api\v1\ClassesController@classes');
-        
+        Route::get('/auth/listClass/{id}', 'App\Http\Controllers\api\v1\ClassesController@listTeacher');
+        //teacher
+        Route::get('/auth/teacher/{id}', 'App\Http\Controllers\api\v1\TeacherController@teacher');
     });
 };
 
 Route::middleware([])->group($publicRoutes);
 Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
+    Route::post('/newRegister', 'App\Http\Controllers\api\v1\AuthController@newRegister');
     Route::group(['prefix' => 'service'], function () {
-        Route::post('/add', 'App\Http\Controllers\api\v1\ServiceController@store');
+        Route::post('/add', 'App\Http\Controllers\api\v1\AuthController@newRegister');
     });
 });
