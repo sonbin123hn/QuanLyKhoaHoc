@@ -7,6 +7,7 @@ use App\Http\Requests\Api\Auth\CheckMailRequest;
 use App\Http\Requests\Api\Auth\LoginRequest;
 use App\Http\Requests\Api\Auth\NewRegisterRequest;
 use App\Http\Requests\Api\Auth\RegisterRequest;
+use App\Http\Requests\Api\Auth\UpdateUserRequest;
 use App\Http\Resources\Auth\AuthResource;
 use App\Models\Infor_Temp;
 use App\Models\User;
@@ -17,6 +18,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth as TymonJWTAuth;
 use JWTAuth;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends ApiController
 {
@@ -56,14 +58,14 @@ class AuthController extends ApiController
             $user=User::where('mobile',$email)->get();
             foreach($user as $value){
                 if($value['is_admin'] == 3){
-                    return response()->json(['UserName' => $value['name']]);
+                    return response()->json(['name' => $value['name']]);
                 }
             }
         }else{
             $user=User::where('email',$email)->get();
             foreach($user as $value){
                 if($value['is_admin'] == 3){
-                    return response()->json(['UserName' => $value['name']]);
+                    return response()->json(['name' => $value['name']]);
                 }
             }
         }
@@ -88,5 +90,29 @@ class AuthController extends ApiController
             return $this->formatJson(AuthResource::class, $user);
         }
         return $this->sendMessage("can not register", 400);
+    }
+    public function updateUser(UpdateUserRequest $request)
+    {
+        $data = $request->all();
+        $user = Auth::user();
+        if(!empty($request->password)){
+            $data['password'] = bcrypt($request->password);
+        }else{
+            $data['password'] = $user->password;
+        }
+        $infor = User::findOrFail($user->id);
+        if($infor->update($data)){
+            return $this->sendMessage("update is success",200);
+        }
+        return $this->sendMessage("update is fail", 400);
+    }
+    public function checkPass(Request $request)
+    {
+        $getOldPass = $request->password;
+        $passwordOld = auth('api')->user()->password;
+        if (!Hash::check($getOldPass, $passwordOld)){
+            return $this->sendMessage("sai mat khau", 400);
+        }
+        return $this->sendMessage("pass", 200);
     }
 }

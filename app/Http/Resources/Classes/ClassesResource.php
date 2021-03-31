@@ -22,7 +22,7 @@ class ClassesResource extends JsonResource
     {
         return [
             'id_class' => $this->id,
-            'class_name' => $this->name,
+            'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
             'teacher' => new TeacherResource(Teacher::findOrFail($this->id_teacher)),

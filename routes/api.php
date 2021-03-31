@@ -38,7 +38,11 @@ $publicRoutes = function () {
 
 Route::middleware([])->group($publicRoutes);
 Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
+    //auth
     Route::post('/newRegister', 'App\Http\Controllers\api\v1\AuthController@newRegister');
+    Route::post('/updateUser', 'App\Http\Controllers\api\v1\AuthController@updateUser');
+    Route::post('/checkPass', 'App\Http\Controllers\api\v1\AuthController@checkPass');
+
     Route::group(['prefix' => 'service'], function () {
         Route::post('/add', 'App\Http\Controllers\api\v1\AuthController@newRegister');
     });
