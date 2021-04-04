@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Subject;
+namespace App\Http\Resources\Auth;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SubjectResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,9 @@ class SubjectResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
-            'image' => $this->image,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'avatar' => $this->avatar ? $this->avatar : config('settings.noImage'),
         ];
     }
 }

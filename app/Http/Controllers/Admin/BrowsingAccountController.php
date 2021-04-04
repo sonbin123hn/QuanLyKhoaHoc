@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\browsing\BrowsingRequest;
+use App\Http\Requests\Admin\CreateAdminRequest;
 use App\Models\Bill;
 use App\Models\Classes;
 use App\Models\Infor_Temp;
@@ -25,7 +26,8 @@ class BrowsingAccountController extends Controller
     {
         $browsings = Infor_Temp::paginate(3);
         $classes = Classes::all();
-        return view('admin/browsingAccount/index')->with(compact("browsings","classes"));
+        $user = User::Where('is_admin',2)->paginate(3);
+        return view('admin/browsingAccount/index')->with(compact("browsings","classes","user"));
     }
 
     /**
@@ -35,7 +37,7 @@ class BrowsingAccountController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/browsingAccount/add');
     }
 
     /**
@@ -44,9 +46,17 @@ class BrowsingAccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CreateAdminRequest $request)
+    {   
+        $data = $request->all();
+        $data["is_admin"] = 2;
+        $data["password"] = Hash::make("admin123");
+        $data["status"] = 1;
+        if(User::create($data)){
+
+            return redirect('/admin/browsing-account')->with('success','Create admin is success');
+        }
+        return back()->with('error','failed'); 
     }
 
     /**

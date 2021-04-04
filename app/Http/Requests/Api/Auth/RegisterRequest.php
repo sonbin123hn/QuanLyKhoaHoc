@@ -45,10 +45,4 @@ class RegisterRequest extends ApiRequest
             'price.required' => 'Mật khẩu là trường bắt buộc', 
         ];
     }
-
-    public function getData()
-    {
-        $data = $this->only(['name','phone', 'email', 'id_class']);
-        return $data;
-    }
 }

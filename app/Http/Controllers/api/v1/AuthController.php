@@ -42,7 +42,7 @@ class AuthController extends ApiController
 
     public function register(RegisterRequest $request)
     {
-        $data = $request->getData();
+        $data = $request->all();
         $user = Infor_Temp::create($data);
         return $this->formatJson(AuthResource::class, $user);
     }

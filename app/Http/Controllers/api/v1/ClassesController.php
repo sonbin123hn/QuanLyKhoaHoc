@@ -12,8 +12,8 @@ class ClassesController extends ApiController
 {
     public function classes($id)
     {
-        $classes = Classes::all()->where('id_subject',$id);
-        return $this->formatJson(ClassesResource::class,$classes);
+        $classes = Classes::where('id_subject',$id)->get();
+        return $this->formatJson(ClassesCollection::class,$classes);
     }
     public function allClasses()
     {

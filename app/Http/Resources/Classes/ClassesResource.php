@@ -21,7 +21,7 @@ class ClassesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_class' => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,

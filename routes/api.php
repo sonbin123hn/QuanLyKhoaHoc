@@ -42,8 +42,11 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
     Route::post('/newRegister', 'App\Http\Controllers\api\v1\AuthController@newRegister');
     Route::post('/updateUser', 'App\Http\Controllers\api\v1\AuthController@updateUser');
     Route::post('/checkPass', 'App\Http\Controllers\api\v1\AuthController@checkPass');
+   
 
-    Route::group(['prefix' => 'service'], function () {
-        Route::post('/add', 'App\Http\Controllers\api\v1\AuthController@newRegister');
+    Route::group(['prefix' => 'rated'], function () {
+        Route::get('/checkValidate/{id}', 'App\Http\Controllers\api\v1\RatedController@isValidUser');
+        Route::post('/add', 'App\Http\Controllers\api\v1\RatedController@addRated');
+        Route::get('/list/{id}', 'App\Http\Controllers\api\v1\RatedController@lissRated');
     });
 });

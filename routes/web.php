@@ -40,6 +40,8 @@ Route::group([
     Route::get('/browsing-account/remove/{id}','BrowsingAccountController@delete')->name('admin.browsings.remove');
     Route::get('/browsing-account/update/{id}','BrowsingAccountController@edit')->name('admin.browsings.edit');
     Route::post('/browsing-account/update/{id}','BrowsingAccountController@update')->name('admin.browsings.update');
+    Route::get('/browsing-account/addAdmin','BrowsingAccountController@create')->name('admin.browsings.addAdmin');
+    Route::post('/browsing-account/addAdmin','BrowsingAccountController@store');
     //course
     Route::get('/course','CourseController@index')->name('admin.course');
     Route::get('/course/add','CourseController@create')->name('admin.course.create');
