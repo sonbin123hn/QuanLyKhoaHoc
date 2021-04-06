@@ -68,13 +68,32 @@ Route::group([
     Route::post('/classes/add','ClassesController@store')->name('admin.classes.store');
     Route::get('/classes/update/{id}','ClassesController@edit')->name('admin.classes.edit');
     Route::post('/classes/update/{id}','ClassesController@update')->name('admin.classes.update');
-    //receipts
-    Route::get('/receipts','ReceiptsController@index')->name('admin.receipts');
-    //ajax receipts
-    Route::post('/ajax_date','ReceiptsController@date');
-    Route::get('/ajax_everyday','ReceiptsController@everyday');
-    Route::get('/ajax_month','ReceiptsController@topmonth');
-    Route::get('/ajax_day','ReceiptsController@topday');
-    Route::get('/ajax_year','ReceiptsController@topyear');
+    //Question
+    Route::get('/question','QuestionController@index')->name('admin.question');
+    Route::get('/question/add','QuestionController@create')->name('admin.question.create');
+    Route::post('/question/add','QuestionController@store')->name('admin.question.store');
+    Route::get('/question/update/{id}','QuestionController@edit')->name('admin.question.edit');
+    Route::post('/question/update/{id}','QuestionController@update')->name('admin.question.update');
+        //ajax
+        Route::post('/question/ajax','QuestionController@ajaxShow');
+    //exams
+    Route::get('/exams','ClassesController@index')->name('admin.exams');
+    Route::get('/exams/add','ClassesController@create')->name('admin.exams.create');
+    Route::post('/exams/add','ClassesController@store')->name('admin.exams.store');
+    Route::get('/exams/update/{id}','ClassesController@edit')->name('admin.exams.edit');
+    Route::post('/exams/update/{id}','ClassesController@update')->name('admin.exams.update');
+    //scores
+    Route::get('/scores','ClassesController@index')->name('admin.scores');
+    Route::get('/scores/add','ClassesController@create')->name('admin.scores.create');
+    Route::post('/scores/add','ClassesController@store')->name('admin.scores.store');
+    Route::get('/scores/update/{id}','ClassesController@edit')->name('admin.scores.edit');
+    Route::post('/scores/update/{id}','ClassesController@update')->name('admin.scores.update');
+    //statistical
+    Route::get('/statistical','ClassesController@index')->name('admin.statistical');
+    Route::get('/statistical/add','ClassesController@create')->name('admin.statistical.create');
+    Route::post('/statistical/add','ClassesController@store')->name('admin.statistical.store');
+    Route::get('/statistical/update/{id}','ClassesController@edit')->name('admin.statistical.edit');
+    Route::post('/statistical/update/{id}','ClassesController@update')->name('admin.statistical.update');
+
 
 });

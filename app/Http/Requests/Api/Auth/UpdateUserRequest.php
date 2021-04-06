@@ -26,13 +26,15 @@ class UpdateUserRequest extends ApiRequest
     {
         return [
             'phone' => 'nullable|numeric|min:10',
-            'name' => 'nullable'
+            'name' => 'nullable',
+            'password' => 'nullable|min:6'
         ];
     }
     public function messages()
     {
         $messages = [
-            'phone.min' => 'phone phải chứa ít nhất 10 kí tự'
+            'phone.min' => 'phone phải chứa ít nhất 10 kí tự',
+            'password.min' => 'password phải chứa ít nhất 10 kí tự'
         ];
         return $messages;
     }

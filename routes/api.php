@@ -32,6 +32,7 @@ $publicRoutes = function () {
         Route::get('/auth/class/{id}', 'App\Http\Controllers\api\v1\ClassesController@classes');
         Route::get('/auth/listClass/{id}', 'App\Http\Controllers\api\v1\ClassesController@listTeacher');
         //teacher
+        Route::get('/auth/teacher', 'App\Http\Controllers\api\v1\TeacherController@allTeacher');
         Route::get('/auth/teacher/{id}', 'App\Http\Controllers\api\v1\TeacherController@teacher');
     });
 };
@@ -42,7 +43,6 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
     Route::post('/newRegister', 'App\Http\Controllers\api\v1\AuthController@newRegister');
     Route::post('/updateUser', 'App\Http\Controllers\api\v1\AuthController@updateUser');
     Route::post('/checkPass', 'App\Http\Controllers\api\v1\AuthController@checkPass');
-   
 
     Route::group(['prefix' => 'rated'], function () {
         Route::get('/checkValidate/{id}', 'App\Http\Controllers\api\v1\RatedController@isValidUser');

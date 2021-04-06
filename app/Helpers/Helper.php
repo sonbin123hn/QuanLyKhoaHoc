@@ -4,6 +4,8 @@ namespace App\Helpers;
 
 use Config;
 use Carbon\Carbon;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Http;
 
 class Helper
 {
@@ -103,7 +105,6 @@ HTML;
         $dt = is_null($date) ? Carbon::now() : new Carbon($date);
         return  $dt->format('d-m-Y H:i:s');
     }
-    
     public static function formatTime($date)
     {
         $dt = is_null($date) ? Carbon::now() : new Carbon($date);
@@ -129,5 +130,26 @@ HTML;
         }
         $dt = new Carbon($date);
         return $dt->format('l');
+    }
+    public static function formatStrToDateTime($str)
+    {
+        if (is_null($str)) {
+            return null;
+        }
+        $dt = new Carbon($str);
+        return $dt->format('Y-m-d H:i:s');
+    }
+    public static function postApi($body, $url)
+    {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json'
+        ])->post($url,$body);
+        return $response;
+    }
+    public static function formatDateDiffForHumans($date){
+        $now = Carbon::now();
+        $dt = is_null($date) ? Carbon::now() : new Carbon($date);
+        return  $dt->diffForHumans($now);
+
     }
 }

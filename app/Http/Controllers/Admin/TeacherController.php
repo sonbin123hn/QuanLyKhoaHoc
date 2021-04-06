@@ -44,12 +44,10 @@ class TeacherController extends Controller
         $file = $request->image;
         $data['status'] = true;
         if(!empty($file)){
-            $data['image'] = $file->getClientOriginalName();
+            $file_path = UploadService::uploadImage("teacher",$file);
         }
+        $data['image'] = $file_path;
         if(Teacher::create($data)){
-            if(!empty($file)){
-                $file->move('upload', $file->getClientOriginalName());
-            }
             return redirect('/admin/teacher')->with('success','teacher Add is success');
         }
         return back()->with('error','service Update failed'); 
@@ -92,12 +90,10 @@ class TeacherController extends Controller
         $data = $request->all();
         $file = $request->image;
         if(!empty($file)){
-            $data['image'] = $file->getClientOriginalName();
+            $file_path = UploadService::uploadImage("teacher",$file);
         }
+        $data['image'] = $file_path;
         if($teacher->update($data)){
-            if(!empty($file)){
-                $file->move('upload', $file->getClientOriginalName());
-            }
             return redirect('/admin/teacher')->with('success','teacher Update is success');
         }
         return back()->with('error','teacher Update failed'); 
