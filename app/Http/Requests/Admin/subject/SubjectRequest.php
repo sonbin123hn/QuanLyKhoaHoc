@@ -27,7 +27,7 @@ class SubjectRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'image' => 'required',
-           
+            'avatar' => 'required',
         ];
         return $rules;
     }
@@ -36,6 +36,7 @@ class SubjectRequest extends FormRequest
         $message = [
             'name.required' => 'The style name field is required.',
             'image.required' => 'The image field is required.',
+            'avatar.required' => 'The image field is required.',
             'description.required' => 'The group field is required',
         ];
         return $message;

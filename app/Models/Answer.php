@@ -9,6 +9,7 @@ class Answer extends Model
 {
     protected $table = 'answers';
     protected $fillable = [
+        'question',
         'answers_A',
         'answers_B',
         'answers_C',

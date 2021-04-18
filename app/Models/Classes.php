@@ -15,5 +15,6 @@ class Classes extends Model
         'id_course',
         'id_teacher',
         'id_subject',
+        "level",
     ];
 }

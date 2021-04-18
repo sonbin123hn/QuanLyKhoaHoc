@@ -58,9 +58,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Image</label>
+            <label class="col-md-12">Icons</label>
             <div class="col-md-12">
                 <input type="text" name="image" value="{{ $subject->image }}" placeholder="Please enter detail " class="form-control form-control-line">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12">Image</label>
+            <div class="col-md-12">
+                <input type="file" name="avatar"> 
             </div>
         </div>
         <div class="form-group">

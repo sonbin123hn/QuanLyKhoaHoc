@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Rated;
 
 use App\Http\Resources\Auth\UserResource;
+use App\Http\Resources\Teacher\TeacherResource;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +23,7 @@ class ListRatedResource extends JsonResource
             'rate' => $this->rate,
             'content' => $this->content,
             'teacher' => new TeacherResource(Teacher::findOrFail($this->id_teacher)),
-            'subject' => new UserResource(User::findOrFail($this->id_user)),
+            'user' => new UserResource(User::findOrFail($this->id_user)),
         ];
     }
 }

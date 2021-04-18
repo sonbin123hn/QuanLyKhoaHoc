@@ -46,59 +46,101 @@
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="col-md-12">Name classes</label>
+            <label class="col-md-12">Question</label>
             <div class="col-md-12">
-                <input type="text" name="name" value="{{ $classes->name }}" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" value="{{$question->content}}" name="content" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
+        @foreach($ans as $val)
         <div class="form-group">
-            <label class="col-md-12">Price</label>
+            <label class="col-md-12">Answer A</label>
             <div class="col-md-12">
-                <input type="text" name="price" value="{{ $classes->price }}" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" value="{{$val['answers_A']}}" name="answers_A" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Description</label>
+            <label class="col-md-12">Answer B</label>
             <div class="col-md-12">
-                <input type="text" name="description" value="{{ $classes->description }}" placeholder="Please enter detail " class="form-control form-control-line">
+                <input type="text" value="{{$val['answers_B']}}" name="answers_B" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-12">Select Teacher</label>
-            <div class="col-sm-12">
-                <select name="id_teacher" class="form-control form-control-line">
-                    @foreach($teacher as $value)
-                    <option value="{{ $value['id'] }}" <?php echo $classes->id_teacher == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
+            <label class="col-md-12">Answer C</label>
+            <div class="col-md-12">
+                <input type="text" value="{{$val['answers_C']}}" name="answers_C" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-12">Select Subject</label>
-            <div class="col-sm-12">
-                <select name="id_subject" class="form-control form-control-line">
-                    @foreach($subject as $value)
-                    <option value="{{ $value['id'] }}" <?php echo $classes->id_subject == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
+            <label class="col-md-12">Answer D</label>
+            <div class="col-md-12">
+                <input type="text" value="{{$val['answers_D']}}" name="answers_D" placeholder="Please enter detail " class="form-control form-control-line">
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-12">Select Course</label>
-            <div class="col-sm-12">
-                <select name="id_course" class="form-control form-control-line">
-                    @foreach($course as $value)
-                    <option value="{{ $value['id'] }}" <?php echo $classes->id_course == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
-            </div>
+        @endforeach
+        <label class="col-sm-12">Select Subject</label>
+        <div class="col-sm-12">
+            <select name="subject" class="form-control form-control-line">
+                @foreach($subject as $value)
+                <option value="{{ $value['id'] }}" <?php echo $question->id_subject == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
+                @endforeach
+            </select>
         </div>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <button class="btn btn-success">Update Service</button>
-            </div>
+        <label class="col-sm-12">Select Answer True</label>
+        <div class="col-sm-12">
+            <select value="" name="true_ans" class="form-control form-control-line">
+                @if($question->true_ans == "A")
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                @endif
+                @if($question->true_ans == "B")
+                <option value="B">B</option>
+                <option value="A">A</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                @endif
+                @if($question->true_ans == "C")
+                <option value="C">C</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="D">D</option>
+                @endif
+                @if($question->true_ans == "D")
+                <option value="D">D</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                @endif
+            </select>
         </div>
-    </form>
+        <label class="col-sm-12">Select Level</label>
+        <div class="col-sm-12">
+            <select name="level" class="form-control form-control-line">
+                @if($question->level == 1)
+                <option value="1">Dễ</option>
+                <option value="2">Trung Bình</option>
+                <option value="3">Khó</option>
+                @endif
+                @if($question->level == 2)
+                <option value="2">Trung Bình</option>
+                <option value="1">Dễ</option>
+                <option value="3">Khó</option>
+                @endif
+                @if($question->level == 3)
+                <option value="3">Khó</option>
+                <option value="1">Dễ</option>
+                <option value="2">Trung Bình</option>
+                @endif
+            </select>
+        </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-12">
+        <button class="btn btn-success">Update Question</button>
+    </div>
+</div>
+</form>
 </div>
 @endsection
 @section('footer')

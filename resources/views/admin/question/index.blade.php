@@ -60,9 +60,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($question as $val)
+                    @foreach($question as $k=>$val)
                     <tr>
-                        <th scope="row">{{ $val['id'] }}</th>
+                        <td>{{ Helper::stt($k, $question->currentPage()) }}</td>
                         <td>{{$val['content']}}</td>
                         @foreach($ans as $v)
                             @if($val['id'] == $v['id_question'])

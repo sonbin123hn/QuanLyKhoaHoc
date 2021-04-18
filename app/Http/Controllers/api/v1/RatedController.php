@@ -16,6 +16,7 @@ class RatedController extends ApiController
     public function addRated(Request $request)
     {
         $data = $request->all();
+        $data["id_user"] = Auth::user()->id;
         if(Rated::create($data)){
             return $this->sendMessage("add is success",200);
         }

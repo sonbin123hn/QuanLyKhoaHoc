@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Resources\Subject;
+namespace App\Http\Resources\Exams;
 
+use App\Http\Resources\Ans\AnsCollection;
+use App\Http\Resources\Ans\AnsResource;
+use App\Models\Question;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SubjectResource extends JsonResource
+class QuestionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +19,8 @@ class SubjectResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'image' => $this->image,
-            'avatar' => $this->avatar,
+            'content' => $this->content,
+            'level' => $this->level,
         ];
     }
 }

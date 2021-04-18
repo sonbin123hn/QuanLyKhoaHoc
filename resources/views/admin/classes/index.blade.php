@@ -50,9 +50,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($classes as $value)
+                @foreach($classes as $k=>$value)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
+                    <th scope="row">{{ Helper::stt($k, $classes->currentPage()) }}</th>
                     <td>{{$value['name']}}</td>
                     <td>{{$value['price']}}</td>
                     <td>{{$value['description']}}</td>

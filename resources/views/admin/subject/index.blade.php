@@ -42,17 +42,19 @@
                     <th scope="col">Stt</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
+                    <th scope="col">icons</th>
                     <th scope="col">Image</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($subject as $value)
+                @foreach($subject as $k=>$value)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
+                    <th scope="row">{{ Helper::stt($k, $subject->currentPage()) }}</th>
                     <td>{{$value['name']}}</td>
                     <td>{{$value['description']}}</td>
                     <td><i class="{{$value['image']}}"></td>
+                    <td><img src="{{$value['avatar']}}" width="100" /></td>
                     <td>
                         <a href="{{ route('admin.subject.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
                         @if($value['status'] == 1)

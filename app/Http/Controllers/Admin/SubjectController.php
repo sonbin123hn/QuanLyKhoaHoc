@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\subject\SubjectRequest;
 use App\Http\Requests\Admin\subject\SubjecUpdatetRequest;
 use App\Models\Subject;
+use App\Services\UploadService;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -40,8 +41,12 @@ class SubjectController extends Controller
     public function store(SubjectRequest $request)
     {
         $data = $request->all();
-        $file = $request->image;
         $data['status'] = true;
+        $file = $request->avatar;
+        if(!empty($file)){
+            $file_path = UploadService::uploadImage("subject",$file);
+        }
+        $data['avatar'] = $file_path;
         if(Subject::create($data)){
             return redirect('/admin/subject')->with('success','subject Add is success');
         }
@@ -78,10 +83,15 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SubjectRequest $request, $id)
+    public function update(SubjecUpdatetRequest $request, $id)
     {
         $subject = Subject::findOrFail($id);
         $data = $request->all();
+        $file = $request->avatar;
+        if(!empty($file)){
+            $file_path = UploadService::uploadImage("subject",$file);
+        }
+        $data['avatar'] = $file_path;
         if($subject->update($data)){
             return redirect('/admin/subject')->with('success','Subject Update is success');
         }

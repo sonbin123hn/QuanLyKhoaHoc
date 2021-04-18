@@ -9,8 +9,14 @@ use App\Http\Requests\Api\Auth\NewRegisterRequest;
 use App\Http\Requests\Api\Auth\RegisterRequest;
 use App\Http\Requests\Api\Auth\UpdateUserRequest;
 use App\Http\Resources\Auth\AuthResource;
+use App\Http\Resources\Auth\UserResource;
+use App\Http\Resources\Classes\ClassesCollection;
+use App\Http\Resources\UserClass\UserClassCollection;
+use App\Http\Resources\UserClass\UserClassResource;
+use App\Models\Classes;
 use App\Models\Infor_Temp;
 use App\Models\User;
+use App\Models\User_Class;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +55,12 @@ class AuthController extends ApiController
 
     public function me()
     {
-        return $this->formatJson(AuthResource::class, auth('api')->user());
+        return $this->formatJson(UserResource::class, auth('api')->user());
+    }
+    public function userFromClass(){
+        $user = Auth::user();
+        $class = User_Class::select('id_class')->where("id_user",$user->id)->get();
+        return $this->formatJson(UserClassCollection::class,$class);
     }
     public function CheckEmail(CheckMailRequest $request)
     {

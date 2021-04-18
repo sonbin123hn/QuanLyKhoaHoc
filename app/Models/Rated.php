@@ -11,7 +11,7 @@ class Rated extends Model
     protected $fillable = [
         'rate',
         'content',
-        'id_class',
+        'id_teacher',
         'id_user',
     ];
 }

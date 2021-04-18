@@ -10,6 +10,7 @@ class Exams extends Model
     protected $table = 'exams';
     protected $fillable = [
         'date_begin',
+        'time_begin',
         'id_class',
     ];
 }

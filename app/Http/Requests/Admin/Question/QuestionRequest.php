@@ -32,8 +32,20 @@ class QuestionRequest extends FormRequest
             'true_ans' => 'required',
             'level' => 'required',
             'subject' => 'required',
-           
         ];
         return $rules;
     }
+    public function message() {
+        $message = [
+            'content.required' => 'The style name field is required.',
+            'answers_A.required' => 'The style name field is required.',
+            'answers_B.required' => 'The style name field is required.',
+            'answers_C.required' => 'The style name field is required.',
+            'answers_D.required' => 'The style name field is required.',
+            'true_ans.required' => 'The image field is required.',
+            'level.required' => 'The group field is required',
+            'subject.required' => 'The group field is required',
+        ];
+        return $message;
+    } 
 }

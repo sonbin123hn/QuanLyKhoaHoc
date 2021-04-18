@@ -96,6 +96,15 @@
                 </select>
             </div>
         </div>
+        <label class="col-sm-12">Select Level</label>
+        <div class="col-sm-12">
+            <select name="level" class="form-control form-control-line">
+                <option value="">--</option>
+                <option value="1">Dễ</option>
+                <option value="2">Trung Bình</option>
+                <option value="3">Khó</option>
+            </select>
+        </div>
         <div class="form-group">
             <div class="col-sm-12">
                 <button class="btn btn-success">Add Class</button>

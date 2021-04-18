@@ -58,9 +58,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Image</label>
+            <label class="col-md-12">icons</label>
             <div class="col-md-12">
                 <input type="text" name="image" placeholder="Please enter detail " class="form-control form-control-line">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12">imgae</label>
+            <div class="col-md-12">
+                <input type="file" name="avatar">
             </div>
         </div>
         <div class="form-group">

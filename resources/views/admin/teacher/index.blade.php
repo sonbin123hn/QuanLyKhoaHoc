@@ -49,9 +49,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($teacher as $value)
+                @foreach($teacher as $k=>$value)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
+                    <th scope="row">{{ Helper::stt($k, $teacher->currentPage()) }}</th>
                     <td>{{$value['name']}}</td>
                     <td>{{$value['email']}}</td>
                     <td>{{$value['phone']}}</td>

@@ -57,12 +57,12 @@ class QuestionController extends Controller
     {
         $data = $request->all();
         $question = Question::create([
-            'content' => $data['content'],
             'true_ans' => $data['true_ans'],
             'level' => $data['level'],
             'id_subject' => $data['subject']
         ]);
         $ans = Answer::create([
+            'question' => $data['question'],
             'answers_A' => $data['answers_A'],
             'answers_B' => $data['answers_B'],
             'answers_C' => $data['answers_C'],
@@ -95,7 +95,10 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subject = Subject::all();
+        $question = Question::findOrFail($id);
+        $ans = Answer::where('id_question',$id)->get();
+        return view("admin/question/edit")->with(compact("subject","question","ans"));
     }
 
     /**
@@ -105,9 +108,27 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $question = Question::findOrFail($id);
+        $question->update([
+            'content' => $data['content'],
+            'true_ans' => $data['true_ans'],
+            'level' => $data['level'],
+            'id_subject' => $data['subject']
+        ]);
+        $ans = Answer::where('id_question',$id);
+        $ans->update([
+            'answers_A' => $data['answers_A'],
+            'answers_B' => $data['answers_B'],
+            'answers_C' => $data['answers_C'],
+            'answers_D' => $data['answers_D'],
+        ]);
+        if($ans && $question){
+            return redirect('admin/question')->with('success','question Update is success');
+        }
+        return back()->with('error','service Update failed'); 
     }
 
     /**

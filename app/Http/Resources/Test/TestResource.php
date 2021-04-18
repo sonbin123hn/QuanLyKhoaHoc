@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Subject;
+namespace App\Http\Resources\Test;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SubjectResource extends JsonResource
+class TestResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,10 @@ class SubjectResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'image' => $this->image,
-            'avatar' => $this->avatar,
+            'duration' => $this->duration,
+            'id_question' => new TeacherResource(Teacher::findOrFail($this->id_teacher)),
+            'subject' => new SubjectResource(Subject::findOrFail($this->id_subject)),
+            'course' => new CourseResource(Course::findOrFail($this->id_course)),
         ];
     }
 }

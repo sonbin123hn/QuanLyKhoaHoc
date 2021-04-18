@@ -46,54 +46,62 @@
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="col-md-12">Name Class</label>
+            <label class="col-md-12">Date Begin</label>
+            <div class="col-md-12">
+                <input type="date" name="date_begin" placeholder="Please enter service " class="form-control form-control-line">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12">Time Begin</label>
+            <div class="col-md-12">
+                <input type="time" name="time_begin" placeholder="Please enter service " class="form-control form-control-line">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12">Name</label>
             <div class="col-md-12">
                 <input type="text" name="name" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Price</label>
+            <label class="col-md-12">Duration</label>
             <div class="col-md-12">
-                <input type="text" name="price" placeholder="Please enter detail " class="form-control form-control-line">
+                <input type="number" name="duration" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Description</label>
+            <label class="col-md-12">Description </label>
             <div class="col-md-12">
-                <input type="text" name="description" placeholder="Please enter detail " class="form-control form-control-line">
+                <input type="text" name="description" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-12">Select Teacher</label>
+            <label class="col-sm-12">Select Classes</label>
             <div class="col-sm-12">
-                <select name="id_teacher" class="form-control form-control-line">
+                <select name="id_class" class="form-control form-control-line">
                     <option value="">--</option>
-                    @foreach($teacher as $value)
+                    @foreach($classes as $value)
                     <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-12">Select Subject</label>
-            <div class="col-sm-12">
-                <select name="id_subject" class="form-control form-control-line">
-                    <option value="">--</option>
-                    @foreach($subject as $value)
-                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
+            <label class="col-md-12">De</label>
+            <div class="col-md-12">
+                <input type="number" name="de" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-12">Select Course</label>
-            <div class="col-sm-12">
-                <select name="id_course" class="form-control form-control-line">
-                    <option value="">--</option>
-                    @foreach($course as $value)
-                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
+            <label class="col-md-12">TRung Binh</label>
+            <div class="col-md-12">
+                <input type="number" name="tb" placeholder="Please enter service " class="form-control form-control-line">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12">Kho</label>
+            <div class="col-md-12">
+                <input type="number" name="kho" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
         <div class="form-group">

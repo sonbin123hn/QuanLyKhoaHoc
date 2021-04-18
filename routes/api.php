@@ -34,19 +34,23 @@ $publicRoutes = function () {
         //teacher
         Route::get('/auth/teacher', 'App\Http\Controllers\api\v1\TeacherController@allTeacher');
         Route::get('/auth/teacher/{id}', 'App\Http\Controllers\api\v1\TeacherController@teacher');
+        //rated
+        Route::get('/rated/list/{id}', 'App\Http\Controllers\api\v1\RatedController@lissRated');
     });
 };
 
 Route::middleware([])->group($publicRoutes);
 Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
     //auth
+    Route::get('/userprofile/infor', 'App\Http\Controllers\api\v1\AuthController@me');
+    Route::get('/userprofile/class', 'App\Http\Controllers\api\v1\AuthController@userFromClass');
     Route::post('/newRegister', 'App\Http\Controllers\api\v1\AuthController@newRegister');
     Route::post('/updateUser', 'App\Http\Controllers\api\v1\AuthController@updateUser');
     Route::post('/checkPass', 'App\Http\Controllers\api\v1\AuthController@checkPass');
-
+    //exam
+    Route::get('/exams/{id}', 'App\Http\Controllers\api\v1\ExamsController@getTest');
     Route::group(['prefix' => 'rated'], function () {
         Route::get('/checkValidate/{id}', 'App\Http\Controllers\api\v1\RatedController@isValidUser');
         Route::post('/add', 'App\Http\Controllers\api\v1\RatedController@addRated');
-        Route::get('/list/{id}', 'App\Http\Controllers\api\v1\RatedController@lissRated');
     });
 });

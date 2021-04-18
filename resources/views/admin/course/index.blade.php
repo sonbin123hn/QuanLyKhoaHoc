@@ -47,9 +47,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($course as $value)
+                @foreach($course as $k=>$value)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
+                    <th scope="row">{{ Helper::stt($k, $course->currentPage()) }}</th>
                     <td>{{$value['name']}}</td>
                     <td>{{$value['day_start']}}</td>
                     <td>{{$value['day_end']}}</td>

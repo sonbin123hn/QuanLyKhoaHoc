@@ -13,5 +13,6 @@ class Subject extends Model
         'description',
         'image',
         'status',
+        'avatar',
     ];
 }

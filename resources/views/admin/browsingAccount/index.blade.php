@@ -45,9 +45,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($browsings as $value)
+                @foreach($browsings as $B=>$value)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
+                    <th scope="row">{{ Helper::stt($B, $browsings->currentPage()) }}</th>
                     <td>{{$value['email']}}</td>
                     <td>{{$value['name']}}</td>
                     <td>{{$value['phone']}}</td>
@@ -68,7 +68,7 @@
                 @endforeach
             </tbody>
         </table>
-        @if(Auth::user()->is_admin != 1)
+        @if(Auth::user()->is_admin == 2)
         You are on page {{$browsings->currentPage()}}
         <a style="font-size: 20px;margin-right: 20px;" href="{{$browsings->previousPageUrl()}}" id="previousPagebtn">
             <</a> <a style="font-size: 20px;" href="{{$browsings->nextPageUrl()}}" id="nextPagebtn">>
@@ -97,9 +97,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($user as $value)
+                @foreach($user as $k=>$value)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
+                    <th scope="row">{{ Helper::stt($k, $user->currentPage()) }}</th>
                     <td>{{$value['email']}}</td>
                     <td>{{$value['name']}}</td>
                     <td>{{$value['phone']}}</td>
@@ -113,9 +113,9 @@
                 @endforeach
             </tbody>
         </table>
-        You are on page {{$user->currentPage()}}
-        <a style="font-size: 20px;margin-right: 20px;" href="{{$user->previousPageUrl()}}" id="previousPagebtn">
-            <</a> <a style="font-size: 20px;" href="{{$user->nextPageUrl()}}" id="nextPagebtn">>
+        You are on page {{$browsings->currentPage()}}
+        <a style="font-size: 20px;margin-right: 20px;" href="{{$browsings->previousPageUrl()}}" id="previousPagebtn">
+            <</a> <a style="font-size: 20px;" href="{{$browsings->nextPageUrl()}}" id="nextPagebtn">>
         </a>
     </div>
     @endif
