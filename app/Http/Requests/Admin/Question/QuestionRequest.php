@@ -37,14 +37,14 @@ class QuestionRequest extends FormRequest
     }
     public function message() {
         $message = [
-            'content.required' => 'The style name field is required.',
-            'answers_A.required' => 'The style name field is required.',
-            'answers_B.required' => 'The style name field is required.',
-            'answers_C.required' => 'The style name field is required.',
-            'answers_D.required' => 'The style name field is required.',
-            'true_ans.required' => 'The image field is required.',
-            'level.required' => 'The group field is required',
-            'subject.required' => 'The group field is required',
+            'content.required' => 'Question content must not be null.',
+            'answers_A.required' => 'The first answer must not be null.',
+            'answers_B.required' => 'The second answer must not be null.',
+            'answers_C.required' => 'The thirst answer must not be null.',
+            'answers_D.required' => 'The fourth answer must not be null.',
+            'true_ans.required' => 'The true answer must not be null.',
+            'level.required' => 'Question level must not be null.',
+            'subject.required' => 'The subject must not be null.',
         ];
         return $message;
     } 

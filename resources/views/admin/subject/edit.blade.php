@@ -4,16 +4,17 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">Service</h4>
+            <h4 class="page-title">Subject Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <i class="fa fa-home" aria-hidden="true"></i>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item" aria-current="page">Subject Management</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -45,33 +46,54 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="col-md-12">Name subject</label>
-            <div class="col-md-12">
-                <input type="text" name="name" value="{{ $subject->name }}" placeholder="Please enter service " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Name subject</label>
+                    <div class="col-md-12">
+                        <input type="text" name="name" value="{{ $subject->name }}" placeholder="" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Description</label>
+                    <div class="col-md-12">
+                        <input type="text" name="description" value="{{ $subject->description }}" placeholder="" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Description</label>
-            <div class="col-md-12">
-                <input type="text" name="description" value="{{ $subject->description }}" placeholder="Please enter detail " class="form-control form-control-line">
+
+        <div class="row">
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Icons</label>
+                    <div class="col-md-12">
+                        <input type="text" name="image" value="{{ $subject->image }}" placeholder="" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Icons</label>
-            <div class="col-md-12">
-                <input type="text" name="image" value="{{ $subject->image }}" placeholder="Please enter detail " class="form-control form-control-line">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="col-md-12">Image</label>
+                    <div class="col-md-12">
+                        <input type="file" name="avatar">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Image</label>
-            <div class="col-md-12">
-                <input type="file" name="avatar"> 
-            </div>
-        </div>
+
         <div class="form-group">
             <div class="col-sm-12">
-                <button class="btn btn-success">Update Service</button>
+                <button class="btn btn-success">Update</button>
             </div>
         </div>
     </form>

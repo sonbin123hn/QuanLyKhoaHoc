@@ -4,16 +4,16 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">subject</h4>
+            <h4 class="page-title">Subject Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            Home
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item" aria-current="page">Subject Management</li>
                     </ol>
                 </nav>
             </div>
@@ -27,7 +27,7 @@
         @if(session('success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Thông báo!</h4>
+            <h4><i class="icon fa fa-check"></i> Notification!</h4>
             {{session('success')}}
         </div>
         @endif
@@ -39,7 +39,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Stt</th>
+                    <th scope="col">No</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">icons</th>

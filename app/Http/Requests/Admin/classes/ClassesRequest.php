@@ -37,13 +37,13 @@ class ClassesRequest extends FormRequest
 
     public function message() {
         $message = [
-            'name.required' => 'The style name field is required.',
-            'price.required' => 'The price field is required.',
-            'price.numeric' => 'The price field is required.',
-            'description.required' => 'The group field is required',
-            'id_teacher.required' => 'The teacher field is required.',
-            'id_subject.required' => 'The subject field is required.',
-            'id_course.required' => 'The course field is required.',
+            'name.required' => 'Class name must not be null.',
+            'price.required' => 'Class price must not be null.',
+            'price.numeric' => 'Price must not be null.',
+            'description.required' => 'Class description must not be null.',
+            'id_teacher.required' => 'Teacher ID must not be null.',
+            'id_subject.required' => 'Subject ID must not be null.',
+            'id_course.required' => 'Course ID must not be null.',
         ];
         return $message;
     }

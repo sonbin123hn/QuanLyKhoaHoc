@@ -4,16 +4,16 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">teacher</h4>
+            <h4 class="page-title">Teacher Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            Home
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item active" aria-current="page">Teacher Management</li>
                     </ol>
                 </nav>
             </div>
@@ -27,7 +27,7 @@
         @if(session('success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Thông báo!</h4>
+            <h4><i class="icon fa fa-check"></i> Notification!</h4>
             {{session('success')}}
         </div>
         @endif
@@ -60,9 +60,9 @@
                     <td>
                         <a href="{{ route('admin.teacher.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
                         @if($value['status'] == 1)
-                            <a href="{{ route('admin.teacher.lock', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to unlock this Member Account ?')"><i class="fa fa-unlock-alt"></i></a>
+                        <a href="{{ route('admin.teacher.lock', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to unlock this Member Account ?')"><i class="fa fa-unlock-alt fa-2x"></i></a>
                         @else
-                            <a href="{{ route('admin.teacher.lock', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to lock this Member Account ?')"><i class="fa fa-lock"></i></a>
+                        <a href="{{ route('admin.teacher.lock', ['id' => $value['id']]) }}" onclick="return confirm('Do you want to lock this Member Account ?')"><i class="fa fa-lock fa-2x"></i></a>
                         @endif
                     </td>
                 </tr>
@@ -71,8 +71,8 @@
         </table>
         You are on page {{$teacher->currentPage()}}
         <a style="font-size: 20px;margin-right: 20px;" href="{{$teacher->previousPageUrl()}}" id="previousPagebtn">
-            <</a> <a style="font-size: 20px;" href="{{$teacher->nextPageUrl()}}" id="nextPagebtn">>
-        </a>
+            </a> <a style="font-size: 20px;" href="{{$teacher->nextPageUrl()}}" id="nextPagebtn">>
+                </a>
     </div>
 
 </div>

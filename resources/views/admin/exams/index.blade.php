@@ -4,16 +4,16 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">classes</h4>
+            <h4 class="page-title">Exams Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            Home
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item active" aria-current="page">Exams Management</li>
                     </ol>
                 </nav>
             </div>
@@ -39,7 +39,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Stt</th>
+                    <th scope="col">No</th>
                     <th scope="col">Date Begin</th>
                     <th scope="col">Time Begin</th>
                     <th scope="col">Class</th>

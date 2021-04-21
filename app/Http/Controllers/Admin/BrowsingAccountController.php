@@ -53,8 +53,8 @@ class BrowsingAccountController extends Controller
         $data["password"] = Hash::make("admin123");
         $data["status"] = 1;
         if(User::create($data)){
-
-            return redirect('/admin/browsing-account')->with('success','Create admin is success');
+            //notice here(2)
+            return redirect('/admin/browsing-account')->with('success','Account successfully created');
         }
         return back()->with('error','failed'); 
     }

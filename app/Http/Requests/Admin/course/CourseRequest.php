@@ -32,9 +32,9 @@ class CourseRequest extends FormRequest
     public function messages()
     {
         $messages = [
-            'name.required' => 'Course name is required field',
-            'day_start.required' => 'Day start is required field',
-            'day_end.required' => 'Day end is required field',
+            'name.required' => 'Course name must not be null.',
+            'day_start.required' => 'Course start day must not be null.',
+            'day_end.required' => 'Course end day must not be null.',
             'day_start.date'=> ' (dd-mm-YYYY).',
             'day_end.date'=> ' (dd-mm-YYYY).',
         ];

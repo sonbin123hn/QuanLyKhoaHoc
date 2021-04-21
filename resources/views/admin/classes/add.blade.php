@@ -4,16 +4,17 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">Classes</h4>
+            <h4 class="page-title">Classes Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                           Home
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item " aria-current="page">Classes Management</li>
+                        <li class="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
             </div>
@@ -45,66 +46,97 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="col-md-12">Name Class</label>
-            <div class="col-md-12">
-                <input type="text" name="name" placeholder="Please enter service " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Name Class</label>
+                    <div class="col-md-12">
+                        <input type="text" name="name" placeholder="Class name" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Price</label>
+                    <div class="col-md-12">
+                        <input type="text" name="price" placeholder="Class price" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Price</label>
-            <div class="col-md-12">
-                <input type="text" name="price" placeholder="Please enter detail " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="col-md-12">Description</label>
+                    <div class="col-md-12">
+                        <input type="text" name="description" placeholder="Class description" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Description</label>
-            <div class="col-md-12">
-                <input type="text" name="description" placeholder="Please enter detail " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-sm-12">Select Teacher</label>
+                    <div class="col-sm-12">
+                        <select name="id_teacher" class="form-control form-control-line">
+                            <option value="">--</option>
+                            @foreach($teacher as $value)
+                            <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-sm-12">Select Subject</label>
+                    <div class="col-sm-12">
+                        <select name="id_subject" class="form-control form-control-line">
+                            <option value="">--</option>
+                            @foreach($subject as $value)
+                            <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-12">Select Teacher</label>
-            <div class="col-sm-12">
-                <select name="id_teacher" class="form-control form-control-line">
-                    <option value="">--</option>
-                    @foreach($teacher as $value)
-                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-sm-12">Select Course</label>
+                    <div class="col-sm-12">
+                        <select name="id_course" class="form-control form-control-line">
+                            <option value="">--</option>
+                            @foreach($course as $value)
+                            <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <label class="col-sm-12">Select Level</label>
+                <div class="col-sm-12">
+                    <select name="level" class="form-control form-control-line">
+                        <option value="">--</option>
+                        <option value="1">Dễ</option>
+                        <option value="2">Trung Bình</option>
+                        <option value="3">Khó</option>
+                    </select>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-12">Select Subject</label>
-            <div class="col-sm-12">
-                <select name="id_subject" class="form-control form-control-line">
-                    <option value="">--</option>
-                    @foreach($subject as $value)
-                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-12">Select Course</label>
-            <div class="col-sm-12">
-                <select name="id_course" class="form-control form-control-line">
-                    <option value="">--</option>
-                    @foreach($course as $value)
-                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <label class="col-sm-12">Select Level</label>
-        <div class="col-sm-12">
-            <select name="level" class="form-control form-control-line">
-                <option value="">--</option>
-                <option value="1">Dễ</option>
-                <option value="2">Trung Bình</option>
-                <option value="3">Khó</option>
-            </select>
-        </div>
+
+
+
+
+
         <div class="form-group">
             <div class="col-sm-12">
                 <button class="btn btn-success">Add Class</button>

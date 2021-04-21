@@ -25,21 +25,23 @@ class CreateAdminRequest extends FormRequest
     {
         return [
             'email' => 'required|string|email|max:255|unique:users',
-            'name'=>'required',
-            'phone'=>'required|min:10|numeric',
-            'address' =>'required',
+            'name' => 'required',
+            'phone' => 'required|min:10|numeric',
+            'address' => 'required',
         ];
     }
-    public function message() {
+    public function message()
+    {
         $message = [
-            'name.required' => 'The style name field is required.',
-            'address.required' => 'The group field is required',
-            'phone.min' => 'it nhất 10 số',
-            'email.required' => 'Email là trường bắt buộc', 
-            'email.email' => 'Email không đúng định dạng',
-            'email.unique' => 'Email da ton tai',
-            'phone.numeric' => 'The phone field incorrect format',
+            'name.required' => 'Teacher name must not be null..',
+            'address.required' => 'Teacher address must not be null.',
+            'phone.min' => 'Phone number must have at least 10 numbers.',
+            'email.required' => 'Teacher email must not be null.',
+            'email.email' => 'Email is not in the correct format.',
+            'email.unique' => 'Email already exists.',
+            'phone.numeric' => 'Phone number is not in the correct format.',
+
         ];
         return $message;
-    }  
+    }
 }

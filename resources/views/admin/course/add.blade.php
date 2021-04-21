@@ -4,16 +4,17 @@
 <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">Country</h4>
+                        <h4 class="page-title">Courses Management</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="#">Home</a>
+                                        Home
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                                    <li class="breadcrumb-item" aria-current="page">Courses Management</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Add</li>
                                 </ol>
                             </nav>
                         </div>
@@ -46,26 +47,33 @@
                 <form action="" method="post">
                    @csrf
                    <div class="form-group">
-                        <label class="col-md-12">Name Sources</label>
+                        <label class="col-md-12">Course's Name</label>
                         <div class="col-md-12">
                             <input type="text"  name="name" placeholder="Please enter service " class="form-control form-control-line">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-12">Day Start</label>
+                    <div class="row">
+                        <div class="col-6">
+                        <div class="form-group">
+                        <label class="col-md-12">Start Day</label>
                         <div class="col-md-12">
                             <input type="date"  name="day_start" placeholder="Please enter detail " class="form-control form-control-line">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-12">Day End</label>
+                        </div>
+                        <div class="col-6">
+                        <div class="form-group">
+                        <label class="col-md-12">End Day</label>
                         <div class="col-md-12">
                             <input type="date"  name="day_end" placeholder="Please enter price " class="form-control form-control-line">
                         </div>
                     </div>
+                        </div>
+                    </div>
+                                       
                    <div class="form-group">
                         <div class="col-sm-12">
-                            <button class="btn btn-success">Add Service</button>
+                            <button class="btn btn-success">Add Course</button>
                         </div>
                     </div>
                 </form>

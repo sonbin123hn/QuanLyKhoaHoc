@@ -4,16 +4,17 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">Classes</h4>
+            <h4 class="page-title">Question Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            Home
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item " aria-current="page">Question Management</li>
+                        <li class="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
             </div>
@@ -45,36 +46,8 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="col-md-12">Question</label>
-            <div class="col-md-12">
-                <input type="text" name="content" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">Answer A</label>
-            <div class="col-md-12">
-                <input type="text" name="answers_A" placeholder="Please enter detail " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">Answer B</label>
-            <div class="col-md-12">
-                <input type="text" name="answers_B" placeholder="Please enter detail " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">Answer C</label>
-            <div class="col-md-12">
-                <input type="text" name="answers_C" placeholder="Please enter detail " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">Answer D</label>
-            <div class="col-md-12">
-                <input type="text" name="answers_D" placeholder="Please enter detail " class="form-control form-control-line">
-            </div>
-        </div>
+
+
         <label class="col-sm-12">Select Subject</label>
         <div class="col-sm-12">
             <select name="subject" class="form-control form-control-line">
@@ -84,31 +57,103 @@
                 @endforeach
             </select>
         </div>
-        <label class="col-sm-12">Select Answer True</label>
-        <div class="col-sm-12">
-            <select name="true_ans" class="form-control form-control-line">
-                <option value="">--</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
+
+        <div class="form-group">
+            <label class="col-md-12">Question</label>
+            <div class="col-md-12">
+                <input type="text" name="content" placeholder="Who is the handsome ?" class="form-control form-control-line">
+            </div>
         </div>
-        <label class="col-sm-12">Select Level</label>
-        <div class="col-sm-12">
-            <select name="level" class="form-control form-control-line">
-                <option value="">--</option>
-                <option value="1">Dễ</option>
-                <option value="2">Trung Bình</option>
-                <option value="3">Khó</option>
-            </select>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-md-12">Answer A</label>
+                            <div class="col-md-12">
+                                <input type="text" name="answers_A" placeholder="" class="form-control form-control-line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-md-12">Answer B</label>
+                            <div class="col-md-12">
+                                <input type="text" name="answers_B" placeholder="" class="form-control form-control-line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-md-12">Answer C</label>
+                            <div class="col-md-12">
+                                <input type="text" name="answers_C" placeholder="" class="form-control form-control-line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-md-12">Answer D</label>
+                            <div class="col-md-12">
+                                <input type="text" name="answers_D" placeholder="" class="form-control form-control-line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="col-sm-12">Select Answer True</label>
+                        <div class="col-sm-12">
+                            <select name="true_ans" class="form-control form-control-line">
+                                <option value="">--</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label class="col-sm-12">Select Level</label>
+                        <div class="col-sm-12">
+                            <select name="level" class="form-control form-control-line">
+                                <option value="">--</option>
+                                <option value="1">Dễ</option>
+                                <option value="2">Trung Bình</option>
+                                <option value="3">Khó</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-12">
-        <button class="btn btn-success">Add Class</button>
+        <div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <button class="btn btn-success">Add Question</button>
+            </div>
+        </div>
     </div>
 </div>
+</div>
+
+
 </form>
 </div>
 @endsection

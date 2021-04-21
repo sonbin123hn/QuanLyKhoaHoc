@@ -32,8 +32,8 @@ class SubjecUpdatetRequest extends FormRequest
 
     public function message() {
         $message = [
-            'name.required' => 'The style name field is required.',
-            'description.required' => 'The group field is required',
+            'name.required' => 'Subject name must not be null.',
+            'description.required' => 'Subject description must not be null.',
         ];
         return $message;
     }   

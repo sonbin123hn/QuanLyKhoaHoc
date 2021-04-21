@@ -4,16 +4,15 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">Service</h4>
+            <h4 class="page-title">Account</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item " aria-current="page">Account Management</li>
+                        <li class="breadcrumb-item active" aria-current="page" >Add</li>
                     </ol>
                 </nav>
             </div>
@@ -45,31 +44,43 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="col-md-12">email</label>
-            <div class="col-md-12">
-                <input type="email" name="email" placeholder="Please enter service " class="form-control form-control-line">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Email</label>
+                    <div class="col-md-12">
+                        <input type="email" name="email" placeholder="duydang9902@gmail.com" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Name</label>
+                    <div class="col-md-12">
+                        <input type="text" name="name" placeholder="Dang Ngoc Duy" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Name</label>
-            <div class="col-md-12">
-                <input type="text" name="name" placeholder="Please enter service " class="form-control form-control-line">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Phone</label>
+                    <div class="col-md-12">
+                        <input type="text" name="phone" placeholder="0987 319 412" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Address</label>
+                    <div class="col-md-12">
+                        <input type="text" name="address" placeholder="05 Tien Son 10, Hai Chau, Da Nang" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Phone</label>
-            <div class="col-md-12">
-                <input type="text" name="phone" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">Address</label>
-            <div class="col-md-12">
-                <input type="text" name="address" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        
+
         <div class="form-group">
             <div class="col-sm-12">
                 <button class="btn btn-success">Create New Admin</button>

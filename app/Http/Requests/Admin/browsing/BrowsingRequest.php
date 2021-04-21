@@ -34,9 +34,9 @@ class BrowsingRequest extends FormRequest
 
     public function message() {
         $message = [
-            'name.required' => 'The style name field is required.',
-            'phone.required' => 'The teacher field is required.',
-            'id_class.required' => 'The course field is required.',
+            'name.required' => 'Name must not be null.',
+            'phone.required' => 'Phone number must not be null.',
+            'id_class.required' => 'Class ID must not be null.',
         ];
         return $message;
     }

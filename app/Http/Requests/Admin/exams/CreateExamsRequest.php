@@ -51,15 +51,15 @@ class CreateExamsRequest extends FormRequest
     }
     public function message() {
         $message = [
-            'date_begin.required' => 'The style name field is required.',
-            'time_begin.required' => 'The style name field is required.',
-            'name.required' => 'The style name field is required.',
-            'duration.required' => 'The style name field is required.',
-            'description.required' => 'The style name field is required.',
-            'de.required' => 'The style name field is required.',
-            'tb.required' => 'The style name field is required.',
-            'kho.required' => 'The style name field is required.',
-            'id_class.required' => 'The group field is required',
+            'date_begin.required' => 'The date begin must not be null.',
+            'time_begin.required' => 'The time begin must not be null.',
+            'name.required' => 'The exam name must not be null.',
+            'duration.required' => 'The exam duration must not be null..',
+            'description.required' => 'The exam description must not be null.',
+            'de.required' => 'The number of easy question must not be null.',
+            'tb.required' => 'The number of normal question must not be null.',
+            'kho.required' => 'The number of hard question must not be null.',
+            'id_class.required' => 'The class ID must not be null.',
         ];
         return $message;
     }  

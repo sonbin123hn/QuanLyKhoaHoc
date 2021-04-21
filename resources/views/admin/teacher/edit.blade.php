@@ -4,16 +4,17 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">Service</h4>
+            <h4 class="page-title">Teacher Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            Home
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item" aria-current="page">Teacher Management</li>
+                        <li class="breadcrumb-item" aria-current="page">Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -45,39 +46,54 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="col-md-12">Name Teacher</label>
-            <div class="col-md-12">
-                <input type="text" name="name" value="{{ $teacher->name }}" placeholder="Please enter service " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Name Teacher</label>
+                    <div class="col-md-12">
+                        <input type="text" name="name" value="{{ $teacher->name }}" placeholder="Please enter service " class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Email</label>
+                    <div class="col-md-12">
+                        <input type="text" name="email" value="{{ $teacher->email }}" placeholder="Please enter detail " class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Email</label>
-            <div class="col-md-12">
-                <input type="text" name="email" value="{{ $teacher->email }}" placeholder="Please enter detail " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Phone number</label>
+                    <div class="col-md-12">
+                        <input type="text" name="phone" value="{{ $teacher->phone }}" placeholder="Please enter price " class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Address</label>
+                    <div class="col-md-12">
+                        <input type="text" name="address" value="{{ $teacher->address }}" placeholder="Please enter price " class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Phone number</label>
-            <div class="col-md-12">
-                <input type="text" name="phone" value="{{ $teacher->phone }}" placeholder="Please enter price " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">Address</label>
-            <div class="col-md-12">
-                <input type="text" name="address" value="{{ $teacher->address }}" placeholder="Please enter price " class="form-control form-control-line">
-            </div>
-        </div>
+
         <div class="form-group">
             <label class="col-md-12">Image</label>
             <div class="col-md-12">
-                <input type="file" name="image"> 
+                <input type="file" accept=".png .jpg" name="image">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <button class="btn btn-success">Update Service</button>
+                <button class="btn btn-success">Update</button>
             </div>
         </div>
     </form>

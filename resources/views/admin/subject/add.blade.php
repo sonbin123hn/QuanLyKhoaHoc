@@ -4,16 +4,17 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">Country</h4>
+            <h4 class="page-title">Subject Management</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            Home
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
+                        <li class="breadcrumb-item" aria-current="page">Subject Management</li>
+                        <li class="breadcrumb-item" aria-current="page">Add</li>
                     </ol>
                 </nav>
             </div>
@@ -45,30 +46,50 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="col-md-12">Name Subject</label>
-            <div class="col-md-12">
-                <input type="text" name="name" placeholder="Please enter service " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Subject's Name</label>
+                    <div class="col-md-12">
+                        <input type="text" name="name" placeholder="Python Basic" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Description</label>
+                    <div class="col-md-12">
+                        <input type="text" name="description" placeholder="Python is a programing language that u ..." class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Description</label>
-            <div class="col-md-12">
-                <input type="text" name="description" placeholder="Please enter detail " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Icon</label>
+                    <div class="col-md-12">
+                        <input type="text" name="image" placeholder="Select the icon" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="col-md-12">Image</label>
+                    <div class="col-md-12">
+                        <input type="file" name="avatar">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">icons</label>
-            <div class="col-md-12">
-                <input type="text" name="image" placeholder="Please enter detail " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">imgae</label>
-            <div class="col-md-12">
-                <input type="file" name="avatar">
-            </div>
-        </div>
+
+
+
         <div class="form-group">
             <div class="col-sm-12">
                 <button class="btn btn-success">Add Subject</button>

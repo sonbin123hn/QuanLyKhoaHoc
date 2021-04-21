@@ -51,7 +51,7 @@ class ClassesController extends Controller
     {
         $data = $request->all();
         if(Classes::create($data)){
-            return redirect('/admin/classes')->with('success','Class Add is success');
+            return redirect('/admin/classes')->with('success','Class successfully created');
         }
         return back()->with('error','service Update failed'); 
     }

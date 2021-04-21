@@ -44,7 +44,7 @@ class CourseController extends Controller
         $data['day_start']= Helper::formatSqlDate($request->day_start);
         $data['day_end']= Helper::formatSqlDate($request->day_end);
         if(Course::create($data)){
-            return redirect('/admin/course')->with('success','Course add is success');
+            return redirect('/admin/course')->with('success','Course successfully created');
         }
         return back()->with('error','service add failed'); 
     }
