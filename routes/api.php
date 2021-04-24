@@ -36,6 +36,9 @@ $publicRoutes = function () {
         Route::get('/auth/teacher/{id}', 'App\Http\Controllers\api\v1\TeacherController@teacher');
         //rated
         Route::get('/rated/list/{id}', 'App\Http\Controllers\api\v1\RatedController@lissRated');
+        //chatbot
+        Route::get('/{id_sub}/class/{id}', 'App\Http\Controllers\api\v1\ClassesController@getClassLV');
+        Route::get('/class/{level}', 'App\Http\Controllers\api\v1\ClassesController@getLV');
     });
 };
 
@@ -48,7 +51,13 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
     Route::post('/updateUser', 'App\Http\Controllers\api\v1\AuthController@updateUser');
     Route::post('/checkPass', 'App\Http\Controllers\api\v1\AuthController@checkPass');
     //exam
-    Route::get('/exams/{id}', 'App\Http\Controllers\api\v1\ExamsController@getTest');
+    Route::group(['prefix' => 'exams'], function () {
+        Route::get('/{id}', 'App\Http\Controllers\api\v1\ExamsController@getTest');
+        Route::get('/test/{id}', 'App\Http\Controllers\api\v1\ExamsController@getAns');
+        Route::post('/checkans/{id}', 'App\Http\Controllers\api\v1\ExamsController@checkAns');
+        Route::get('/userprofile/next_exams', 'App\Http\Controllers\api\v1\ExamsController@nextExams');
+    });
+    //rated
     Route::group(['prefix' => 'rated'], function () {
         Route::get('/checkValidate/{id}', 'App\Http\Controllers\api\v1\RatedController@isValidUser');
         Route::post('/add', 'App\Http\Controllers\api\v1\RatedController@addRated');

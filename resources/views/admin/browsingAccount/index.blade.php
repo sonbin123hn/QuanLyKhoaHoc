@@ -68,12 +68,6 @@
                 @endforeach
             </tbody>
         </table>
-        @if(Auth::user()->is_admin == 2)
-        You are on page {{$browsings->currentPage()}}
-        <a style="font-size: 20px;margin-right: 20px;" href="{{$browsings->previousPageUrl()}}" id="previousPagebtn">
-            << /a> <a style="font-size: 20px;" href="{{$browsings->nextPageUrl()}}" id="nextPagebtn">>
-                </a>
-                @endif
     </div>
     @if(Auth::user()->is_admin == 1)
     <div class="table-responsive">
@@ -114,12 +108,12 @@
                 @endforeach
             </tbody>
         </table>
-        You are on page {{$browsings->currentPage()}}
-        <a style="font-size: 20px;margin-right: 20px;" href="{{$browsings->previousPageUrl()}}" id="previousPagebtn">
-            </a> <a style="font-size: 20px;" href="{{$browsings->nextPageUrl()}}" id="nextPagebtn">>
-                </a>
     </div>
     @endif
+    You are on page {{$browsings->currentPage()}}
+    <a style="font-size: 20px;margin-right: 20px;" href="{{$browsings->previousPageUrl()}}" id="previousPagebtn">
+    </a> <a style="font-size: 20px;" href="{{$browsings->nextPageUrl()}}" id="nextPagebtn">>
+    </a>
 </div>
 @endsection
 @section('footer')

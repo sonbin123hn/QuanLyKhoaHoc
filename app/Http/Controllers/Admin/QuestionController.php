@@ -113,13 +113,13 @@ class QuestionController extends Controller
         $data = $request->all();
         $question = Question::findOrFail($id);
         $question->update([
-            'content' => $data['content'],
             'true_ans' => $data['true_ans'],
             'level' => $data['level'],
             'id_subject' => $data['subject']
         ]);
         $ans = Answer::where('id_question',$id);
         $ans->update([
+            'question' => $data['question'],
             'answers_A' => $data['answers_A'],
             'answers_B' => $data['answers_B'],
             'answers_C' => $data['answers_C'],

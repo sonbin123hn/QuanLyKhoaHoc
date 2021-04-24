@@ -2,12 +2,11 @@
 
 namespace App\Http\Resources\Exams;
 
-use App\Http\Resources\Ans\AnsCollection;
-use App\Http\Resources\Ans\AnsResource;
-use App\Models\Question;
+use App\Http\Resources\Classes\ClassesResource;
+use App\Models\Classes;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class QuestionResource extends JsonResource
+class ExamsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,8 +18,8 @@ class QuestionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'content' => $this->content,
-            'level' => $this->level,
+            'date_begin' => $this->date_begin,
+            'class' => new ClassesResource(Classes::findOrFail($this->id_class)),
         ];
     }
 }

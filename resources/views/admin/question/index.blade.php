@@ -63,9 +63,9 @@
                     @foreach($question as $k=>$val)
                     <tr>
                         <td>{{ Helper::stt($k, $question->currentPage()) }}</td>
-                        <td>{{$val['content']}}</td>
                         @foreach($ans as $v)
                             @if($val['id'] == $v['id_question'])
+                                <td>{{$v['question']}}</td>
                                 <td>{{$v['answers_A']}}</td>
                                 <td>{{$v['answers_B']}}</td>
                                 <td>{{$v['answers_C']}}</td>

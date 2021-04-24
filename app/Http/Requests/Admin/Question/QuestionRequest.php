@@ -24,7 +24,7 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'content' => 'required',
+            'question' => 'required',
             'answers_A' => 'required',
             'answers_B' => 'required',
             'answers_C' => 'required',
@@ -37,7 +37,7 @@ class QuestionRequest extends FormRequest
     }
     public function message() {
         $message = [
-            'content.required' => 'Question content must not be null.',
+            'question.required' => 'Question content must not be null.',
             'answers_A.required' => 'The first answer must not be null.',
             'answers_B.required' => 'The second answer must not be null.',
             'answers_C.required' => 'The thirst answer must not be null.',

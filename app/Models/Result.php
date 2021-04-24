@@ -9,8 +9,10 @@ class Result extends Model
 {
     protected $table = 'results';
     protected $fillable = [
-        'point',
+        'scores',
         'id_user',
         'id_class',
+        'right_ans',
+        'wrong_ans',
     ];
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Exams;
+namespace App\Http\Resources\Question;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 

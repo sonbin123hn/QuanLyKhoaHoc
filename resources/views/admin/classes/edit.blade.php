@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-md-12">Price</label>
                     <div class="col-md-12">
-                        <input type="text" name="price" value="{{ $classes->price }}" placeholder="Please enter service " class="form-control form-control-line">
+                        <input type="number" name="price" value="{{ $classes->price }}" placeholder="Please enter service " class="form-control form-control-line">
                     </div>
                 </div>
             </div>
@@ -115,7 +115,26 @@
                 </div>
             </div>
         </div>
-
+        <label class="col-sm-4">Select Level</label>
+        <div class="col-sm-4">
+            <select name="level" class="form-control form-control-line">
+                @if($classes->level == 1)
+                <option value="1">Dễ</option>
+                <option value="2">Trung Bình</option>
+                <option value="3">Khó</option>
+                @endif
+                @if($classes->level == 2)
+                <option value="2">Trung Bình</option>
+                <option value="1">Dễ</option>
+                <option value="3">Khó</option>
+                @endif
+                @if($classes->level == 3)
+                <option value="3">Khó</option>
+                <option value="1">Dễ</option>
+                <option value="2">Trung Bình</option>
+                @endif
+            </select>
+        </div>
         <div class="form-group">
             <div class="col-sm-12">
                 <button class="btn btn-success">Update</button>

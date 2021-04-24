@@ -2,6 +2,10 @@
 
 namespace App\Http\Resources\Test;
 
+use App\Http\Resources\Ans\AnsResource;
+use App\Http\Resources\Exams\ExamsResource;
+use App\Models\Answer;
+use App\Models\Exams;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TestResource extends JsonResource
@@ -19,9 +23,8 @@ class TestResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'duration' => $this->duration,
-            'id_question' => new TeacherResource(Teacher::findOrFail($this->id_teacher)),
-            'subject' => new SubjectResource(Subject::findOrFail($this->id_subject)),
-            'course' => new CourseResource(Course::findOrFail($this->id_course)),
+            'number_of_question' => count($this->question),
+            'id_exams' => new ExamsResource(Exams::findOrFail($this->id_exams)),
         ];
     }
 }

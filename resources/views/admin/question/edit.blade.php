@@ -45,13 +45,13 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
+        @foreach($ans as $val)
         <div class="form-group">
             <label class="col-md-12">Question</label>
             <div class="col-md-12">
-                <input type="text" value="{{$question->content}}" name="content" placeholder="Please enter service " class="form-control form-control-line">
+                <input type="text" value="{{$val['question']}}" name="question" placeholder="Please enter service " class="form-control form-control-line">
             </div>
         </div>
-        @foreach($ans as $val)
         <div class="form-group">
             <label class="col-md-12">Answer A</label>
             <div class="col-md-12">

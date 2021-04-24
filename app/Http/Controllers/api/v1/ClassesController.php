@@ -24,4 +24,17 @@ class ClassesController extends ApiController
         $list = Classes::where("id_teacher",$id)->get();
         return $this->formatJson(ClassesCollection::class,$list);  
     }
+    public function getClassLV($id_sub,$id)
+    {
+        $class = Classes::where([
+            'id_subject' => $id_sub,
+            'level' => $id 
+        ])->get();
+        return $this->formatJson(ClassesCollection::class,$class);  
+    }
+    public function getLV($level)
+    {
+        $class = Classes::where('level', $level)->get();
+        return $this->formatJson(ClassesCollection::class,$class);  
+    }
 }
