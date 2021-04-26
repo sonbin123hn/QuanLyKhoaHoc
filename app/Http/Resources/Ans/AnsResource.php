@@ -17,11 +17,12 @@ class AnsResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id_question' => $this->id,
             'question' => $this->question,
-            'answers_A' => $this->answers_A,
-            'answers_B' => $this->answers_B,
-            'answers_C' => $this->answers_C,
-            'answers_D' => $this->answers_D,
+            'A' => $this->answers_A,
+            'B' => $this->answers_B,
+            'C' => $this->answers_C,
+            'D' => $this->answers_D,
         ];
     }
 }
