@@ -12,6 +12,7 @@ use App\Http\Resources\Exams\QuestionCollection;
 use App\Http\Resources\Test\TestCollection;
 use App\Http\Resources\Test\TestResource;
 use App\Models\Answer;
+use App\Models\Classes;
 use App\Models\Exams;
 use App\Models\Question;
 use App\Models\Result;
@@ -57,12 +58,13 @@ class ExamsController extends ApiController
         $send['ans_fail'] = $numberQuestion - $dem;
         $send['result_test '] = (10 / $numberQuestion) *  $dem;
         $exam = Exams::findOrFail($test->id_exams);
+        $class = Classes::findOrFail($exam->id_class);
         $result = Result::create([
             'scores' => $send['result_test '],
             'right_ans' =>  $send['ans_pass'],
             'wrong_ans' => $send['ans_fail'],
             'id_user' => Auth::user()->id,
-            'id_class' => $exam->id,
+            'id_class' => $class->id,
         ]);
         if($result){
             return $this->sendSuccessResponse($send);
