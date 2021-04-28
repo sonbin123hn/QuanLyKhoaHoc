@@ -37,8 +37,8 @@ $publicRoutes = function () {
         //rated
         Route::get('/rated/list/{id}', 'App\Http\Controllers\api\v1\RatedController@lissRated');
         //chatbot
-        Route::get('/{id_sub}/class/{id}', 'App\Http\Controllers\api\v1\ClassesController@getClassLV');
-        Route::get('/class/{level}', 'App\Http\Controllers\api\v1\ClassesController@getLV');
+        Route::get('/class/chatbot/{id_sub}/{id}', 'App\Http\Controllers\api\v1\ClassesController@getClassLV');
+        Route::get('/class/chatbot/all/{level}', 'App\Http\Controllers\api\v1\ClassesController@getLV');
     });
 };
 
@@ -46,7 +46,7 @@ Route::middleware([])->group($publicRoutes);
 Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
     //auth
     Route::get('/userprofile/infor', 'App\Http\Controllers\api\v1\AuthController@me');
-    Route::get('/userprofile/class', 'App\Http\Controllers\api\v1\AuthController@userFromClass');
+    Route::get('/userprofile/classes', 'App\Http\Controllers\api\v1\AuthController@userFromClass');
     Route::post('/newRegister', 'App\Http\Controllers\api\v1\AuthController@newRegister');
     Route::post('/updateUser', 'App\Http\Controllers\api\v1\AuthController@updateUser');
     Route::post('/checkPass', 'App\Http\Controllers\api\v1\AuthController@checkPass');
@@ -56,6 +56,7 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
         Route::get('/test/{id}', 'App\Http\Controllers\api\v1\ExamsController@getAns');
         Route::post('/checkans/{id}', 'App\Http\Controllers\api\v1\ExamsController@checkAns');
         Route::get('/userprofile/next_exams', 'App\Http\Controllers\api\v1\ExamsController@nextExams');
+        Route::get('/userprofile/done_exams', 'App\Http\Controllers\api\v1\ExamsController@examDone');
     });
     //rated
     Route::group(['prefix' => 'rated'], function () {
