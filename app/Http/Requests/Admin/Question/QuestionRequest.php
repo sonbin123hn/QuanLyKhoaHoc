@@ -23,7 +23,7 @@ class QuestionRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'question' => 'required',
             'answers_A' => 'required',
             'answers_B' => 'required',
@@ -33,7 +33,6 @@ class QuestionRequest extends FormRequest
             'level' => 'required',
             'subject' => 'required',
         ];
-        return $rules;
     }
     public function message() {
         $message = [

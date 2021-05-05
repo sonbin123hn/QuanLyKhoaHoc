@@ -29,6 +29,6 @@ class CreateInforTempsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infor__temps');
+        Schema::dropIfExists('infor_temps');
     }
 }
