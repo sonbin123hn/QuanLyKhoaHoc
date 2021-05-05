@@ -68,6 +68,8 @@ class BrowsingAccountController extends Controller
     public function show($id)
     {
         $data = Infor_Temp::findOrFail($id);
+        $userMail = User::findOrFail($data['id']);
+        $class = Classes::findOrFail($data['id_class']);
         $check = User::where("email",$data['email'])->exists();
         if($check){
             try {
@@ -80,6 +82,13 @@ class BrowsingAccountController extends Controller
                     'id_user' =>  $data['id'],
                 ]);
                 $data->delete();
+                //mail
+                $details = [
+                    "name" =>  $userMail->name,
+                    "nameclass" => $class->name,
+                    "price"=> $data['price']
+                ];
+                \Mail::to($data['email'])->send(new \App\Mail\MyMailNew($details));
                 return redirect('/admin/browsing-account')->with('success','user infor Update is success');
             } catch (Exception $ex) {
                 DB::rollBack();
@@ -105,6 +114,13 @@ class BrowsingAccountController extends Controller
                     'amount' => $data['price'],
                     'id_user' =>  $user->id,
                 ]);
+                //mail
+                $details = [
+                    "name" =>  $data['name'],
+                    "nameclass" => $class->name,
+                    "price"=> $data['price']
+                ];
+                \Mail::to($data['email'])->send(new \App\Mail\MyMailNew($details));
                 $data->delete();
             }
             DB::commit();

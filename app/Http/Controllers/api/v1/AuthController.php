@@ -50,6 +50,13 @@ class AuthController extends ApiController
     {
         $data = $request->all();
         $user = Infor_Temp::create($data);
+        $class = Classes::findOrFail($request->id_class);
+        $details = [
+            "name" =>  $user->name,
+            "nameclass" => $class->name,
+            "price"=> $class->price
+        ];
+        \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
         return $this->formatJson(AuthResource::class, $user);
     }
 
@@ -65,19 +72,10 @@ class AuthController extends ApiController
     public function CheckEmail(CheckMailRequest $request)
     {
         $email = str_replace(' ','', $request->get('email'));
-        if(is_numeric($email)){
-            $user=User::where('mobile',$email)->get();
-            foreach($user as $value){
-                if($value['is_admin'] == 3){
-                    return response()->json(['name' => $value['name']]);
-                }
-            }
-        }else{
-            $user=User::where('email',$email)->get();
-            foreach($user as $value){
-                if($value['is_admin'] == 3){
-                    return response()->json(['name' => $value['name']]);
-                }
+        $user=User::where('email',$email)->get();
+        foreach($user as $value){
+            if($value['is_admin'] == 3){
+                return response()->json(['name' => $value['name']]);
             }
         }
 
@@ -98,6 +96,13 @@ class AuthController extends ApiController
             "price"=> $request->price
         ]);
         if($new){
+            $class = Classes::findOrFail($request->id_class);
+            $details = [
+                "name" =>  $user->name,
+                "nameclass" => $class->name,
+                "price"=> $class->price
+            ];
+            \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
             return $this->formatJson(AuthResource::class, $user);
         }
         return $this->sendMessage("can not register", 400);

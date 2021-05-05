@@ -83,7 +83,7 @@ class ExamsController extends ApiController
             $data = Result::Where('id_user',$id)->get();
             return $this->formatJson(DoneExamsCollection::class,$data);
         }else{
-            return $this->sendMessage("chưa làm bài ktr nào");
+            return $this->sendMessage("null");
         }
     }
     public function nextExams()
@@ -94,6 +94,7 @@ class ExamsController extends ApiController
             $arr[] = $value['id_class'];
         }
         $tomorrow = Carbon::tomorrow();
+        $arrID = [];
         $exam = Exams::whereIn('id_class',$arr)->whereDate("date_begin","<=",$tomorrow)->get();
         foreach($exam as $val){
             $check = Result::Where(['id_user'=>$id,

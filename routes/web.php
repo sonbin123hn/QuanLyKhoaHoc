@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('/mail', 'App\Http\Controllers\Admin\MailController@mail')->name('admin.login');
 Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::group([
     'prefix' => 'admin',

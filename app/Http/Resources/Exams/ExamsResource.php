@@ -19,6 +19,7 @@ class ExamsResource extends JsonResource
         return [
             'id' => $this->id,
             'date_begin' => $this->date_begin,
+            'time_begin' => $this->time_begin,
             'class' => new ClassesResource(Classes::findOrFail($this->id_class)),
         ];
     }
