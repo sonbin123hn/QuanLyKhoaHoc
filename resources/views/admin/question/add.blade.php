@@ -61,7 +61,7 @@
         <div class="form-group">
             <label class="col-md-12">Question</label>
             <div class="col-md-12">
-                <input type="text" name="content" placeholder="Who is the handsome ?" class="form-control form-control-line">
+                <input type="text" name="question" placeholder="Who is the handsome ?" class="form-control form-control-line">
             </div>
         </div>
 

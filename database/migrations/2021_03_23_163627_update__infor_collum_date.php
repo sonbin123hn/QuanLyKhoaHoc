@@ -26,7 +26,7 @@ class UpdateInforCollumDate extends Migration
     public function down()
     {
         Schema::table('infor_temps', function (Blueprint $table) {
-            //
+            Schema::dropIfExists('infor_temps');
         });
     }
 }
