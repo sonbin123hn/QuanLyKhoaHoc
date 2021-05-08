@@ -68,6 +68,7 @@ class ExamsController extends ApiController
             'wrong_ans' => $send['ans_fail'],
             'id_user' => Auth::user()->id,
             'id_class' => $class->id,
+            'id_exams' => $exam->id,
         ]);
         if($result){
             return $this->sendSuccessResponse($send);

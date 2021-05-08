@@ -14,5 +14,6 @@ class Result extends Model
         'id_class',
         'right_ans',
         'wrong_ans',
+        'id_exams',
     ];
 }
