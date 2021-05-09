@@ -54,6 +54,7 @@ class AuthController extends ApiController
         $details = [
             "name" =>  $user->name,
             "nameclass" => $class->name,
+            "phone" => $user->phone,
             "price"=> $class->price
         ];
         \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
@@ -100,6 +101,7 @@ class AuthController extends ApiController
             $details = [
                 "name" =>  $user->name,
                 "nameclass" => $class->name,
+                "phone" => $user->phone,
                 "price"=> $class->price
             ];
             \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
