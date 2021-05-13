@@ -7,6 +7,7 @@ use App\Http\Resources\Rated\ListRatedResource;
 use App\Http\Resources\Rated\RatedCollection;
 use App\Models\Classes;
 use App\Models\Rated;
+use App\Models\Teacher;
 use App\Models\User_Class;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,22 @@ class RatedController extends ApiController
     {
         $data = $request->all();
         $data["id_user"] = Auth::user()->id;
-        if(Rated::create($data)){
+        $rate = Rated::create($data);
+        if($rate){
+            $list = Rated::where("id_teacher",$rate->id_teacher)->get();
+            $teacher = Teacher::findOrFail($rate->id_teacher);
+            //kiem tra rate 
+            if(!empty($list)){
+                $tong = 0;
+                $dem = 0;
+                foreach($list as $value){
+                    $dem++;
+                    $tong += $value['rate'];
+                }
+                $teacher->update([
+                    'rate' => round($tong/$dem)
+                ]);
+            }
             return $this->sendMessage("add is success",200);
         }
         return $this->sendMessage("fail",400);

@@ -83,6 +83,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Description</label>
+                    <div class="col-md-12">
+                        <input type="text" name="description" placeholder="Hai Chau, Da Nang City" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">

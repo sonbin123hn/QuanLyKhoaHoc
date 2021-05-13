@@ -29,6 +29,7 @@ class teacherRequest extends FormRequest
             'phone'=>'required|min:10|numeric',
             'address' => 'required',
             'image' => 'required',
+            'description' => 'required',
            
         ];
         return $rules;
@@ -44,6 +45,7 @@ class teacherRequest extends FormRequest
             'email.email' => 'Email is not in the correct format.',
             'email.unique' => 'Email already exists.',
             'phone.numeric' => 'Phone number is not in the correct format.',
+            'description.required' => 'description must not be null.',
         ];
         return $message;
     }   

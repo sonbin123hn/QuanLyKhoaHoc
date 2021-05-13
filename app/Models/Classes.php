@@ -17,4 +17,8 @@ class Classes extends Model
         'id_subject',
         "level",
     ];
+    public function user_class()
+    {
+        return $this->hasMany(User_Class::class,'id_class', 'id');
+    }
 }

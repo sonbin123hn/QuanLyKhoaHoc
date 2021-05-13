@@ -44,6 +44,7 @@
                     <th scope="col">Mail</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Address</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Image</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -56,6 +57,7 @@
                     <td>{{$value['email']}}</td>
                     <td>{{$value['phone']}}</td>
                     <td>{{$value['address']}}</td>
+                    <td>{{$value['description']}}</td>
                     <td><img src="{{$value['image']}}" width="100" /></td>
                     <td>
                         <a href="{{ route('admin.teacher.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>

@@ -12,4 +12,8 @@ class User_Class extends Model
         'id_user',
         'id_class',
     ];
+    public function Classes()
+    {
+        return $this->belongsTo(Classes::class,'id_class','id');
+    }
 }

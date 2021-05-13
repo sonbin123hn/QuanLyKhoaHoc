@@ -27,6 +27,8 @@ $publicRoutes = function () {
         Route::post('/auth/name',   'App\Http\Controllers\api\v1\AuthController@CheckEmail');
         //Home
         Route::get('/auth/home',   'App\Http\Controllers\api\v1\HomeController@home');
+            //statistics
+            Route::get('/auth/statistics',   'App\Http\Controllers\api\v1\HomeController@statistics');
         //class
         Route::get('/auth/class', 'App\Http\Controllers\api\v1\ClassesController@allClasses');
         Route::get('/auth/class/{id}', 'App\Http\Controllers\api\v1\ClassesController@classes');
@@ -39,6 +41,11 @@ $publicRoutes = function () {
         //chatbot
         Route::get('/class/chatbot/{id_sub}/{id}', 'App\Http\Controllers\api\v1\ClassesController@getClassLV');
         Route::get('/class/chatbot/all/{level}', 'App\Http\Controllers\api\v1\ClassesController@getLV');
+        Route::get('/class/top', 'App\Http\Controllers\api\v1\ClassesController@topClass');
+        Route::get('/chatbot/top/teacher', 'App\Http\Controllers\api\v1\ClassesController@topTeacher');
+            //search
+            Route::get('/chatbot/teacher/search/{name}', 'App\Http\Controllers\api\v1\TeacherController@searchTeacher');
+            Route::get('/chatbot/subject/search/{name}', 'App\Http\Controllers\api\v1\TeacherController@searchSubject');
     });
 };
 

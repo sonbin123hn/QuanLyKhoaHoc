@@ -15,5 +15,7 @@ class Teacher extends Model
         'address',
         'image',
         'status',
+        'description',
+        'rate',
     ];
 }
