@@ -68,9 +68,8 @@ class BrowsingAccountController extends Controller
     public function show($id)
     {
         $data = Infor_Temp::findOrFail($id);
-        $userMail = User::findOrFail($data['id']);
-        $class = Classes::findOrFail($data['id_class']);
-        $check = User::where("email",$data['email'])->exists();
+        $class = Classes::findOrFail($data->id_class);
+        $check = User::where("email",$data->email)->exists();
         if($check){
             try {
                 $listClass = User_Class::create([
@@ -81,53 +80,54 @@ class BrowsingAccountController extends Controller
                     'amount' => $data['price'],
                     'id_user' =>  $data['id'],
                 ]);
-                $data->delete();
                 //mail
                 $details = [
-                    "name" =>  $userMail->name,
+                    "name" =>  $data->name,
                     "nameclass" => $class->name,
                     "price"=> $data['price']
                 ];
                 \Mail::to($data['email'])->send(new \App\Mail\MyMailNew($details));
+                $data->delete();
                 return redirect('/admin/browsing-account')->with('success','user infor Update is success');
             } catch (Exception $ex) {
                 DB::rollBack();
                 throw $ex;
             }
-        }
-        try {
-            DB::beginTransaction();
-            $user = User::create([
-                'name' => $data['name'],
-                'phone' => $data['phone'],
-                'email' => $data['email'],
-                'password' => Hash::make("usermember123"),
-                'status' => 1,
-                'is_admin' => 3,
-            ]);
-            if($user){
-                $listClass = User_Class::create([
-                    'id_class' => $data['id_class'],
-                    'id_user' => $user->id,
+        }else{
+            try {
+                DB::beginTransaction();
+                $user = User::create([
+                    'name' => $data->name,
+                    'phone' => $data->phone,
+                    'email' => $data->email,
+                    'password' => Hash::make("usermember123"),
+                    'status' => 1,
+                    'is_admin' => 3,
                 ]);
-                $bill = Bill::create([
-                    'amount' => $data['price'],
-                    'id_user' =>  $user->id,
-                ]);
-                //mail
-                $details = [
-                    "name" =>  $data['name'],
-                    "nameclass" => $class->name,
-                    "price"=> $data['price']
-                ];
-                \Mail::to($data['email'])->send(new \App\Mail\MyMailNew($details));
-                $data->delete();
+                if($user){
+                    $listClass = User_Class::create([
+                        'id_class' => $data->id_class,
+                        'id_user' => $user->id,
+                    ]);
+                    $bill = Bill::create([
+                        'amount' => $data->price,
+                        'id_user' =>  $user->id,
+                    ]);
+                    //mail
+                    $details = [
+                        "name" =>  $data->name,
+                        "nameclass" => $class->name,
+                        "price"=> $data->price
+                    ];
+                    \Mail::to($data['email'])->send(new \App\Mail\MyMailNew($details));
+                    $data->delete();
+                }
+                DB::commit();
+                return redirect('/admin/browsing-account')->with('success','user infor Update is success');
+            } catch (Exception $ex) {
+                DB::rollBack();
+                throw $ex;
             }
-            DB::commit();
-            return redirect('/admin/browsing-account')->with('success','user infor Update is success');
-        } catch (Exception $ex) {
-            DB::rollBack();
-            throw $ex;
         }
     }
 
