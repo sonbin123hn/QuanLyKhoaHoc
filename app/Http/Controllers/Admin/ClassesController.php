@@ -51,7 +51,8 @@ class ClassesController extends Controller
     {
         $data = $request->all();
         if(Classes::create($data)){
-            return redirect('/admin/classes')->with('success','Class successfully created');
+            return redirect('/admin/classes/add');//duy work with RPA
+            //return redirect('/admin/classes')->with('success','Class successfully created');
         }
         return back()->with('error','service Update failed'); 
     }

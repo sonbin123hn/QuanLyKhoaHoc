@@ -71,7 +71,8 @@ class QuestionController extends Controller
         ]);
         if($ans){
             session()->forget('question');
-            return redirect('admin/question')->with('success','Question successfully created');
+            return redirect('admin/question/add');//duy work with
+            //return redirect('admin/question')->with('success','Question successfully created');
         }
         return back()->with('error','service Update failed'); 
     }

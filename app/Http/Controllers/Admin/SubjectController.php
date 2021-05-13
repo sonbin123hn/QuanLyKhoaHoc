@@ -48,6 +48,7 @@ class SubjectController extends Controller
         }
         $data['avatar'] = $file_path;
         if(Subject::create($data)){
+            //return redirect('/admin/subject/add'); //duy work with RPA
             return redirect('/admin/subject')->with('success','Subject successfully created');
         }
         return back()->with('error','service Update failed'); 

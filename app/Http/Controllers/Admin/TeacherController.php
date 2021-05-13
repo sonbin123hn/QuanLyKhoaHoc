@@ -48,7 +48,8 @@ class TeacherController extends Controller
         }
         $data['image'] = $file_path;
         if(Teacher::create($data)){
-            return redirect('/admin/teacher')->with('success','Teacher successfully created');
+            //return redirect('/admin/teacher/add'); //by duy work with RPA
+             return redirect('/admin/teacher')->with('success','Teacher successfully created');
         }
         return back()->with('error','service Update failed'); 
 
