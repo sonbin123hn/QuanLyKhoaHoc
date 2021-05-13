@@ -43,6 +43,7 @@ $publicRoutes = function () {
         Route::get('/class/chatbot/all/{level}', 'App\Http\Controllers\api\v1\ClassesController@getLV');
         Route::get('/class/top', 'App\Http\Controllers\api\v1\ClassesController@topClass');
         Route::get('/chatbot/top/teacher', 'App\Http\Controllers\api\v1\ClassesController@topTeacher');
+        Route::get('/chatbot/top/subject', 'App\Http\Controllers\api\v1\ClassesController@topSubject');
             //search
             Route::get('/chatbot/teacher/search/{name}', 'App\Http\Controllers\api\v1\TeacherController@searchTeacher');
             Route::get('/chatbot/subject/search/{name}', 'App\Http\Controllers\api\v1\TeacherController@searchSubject');

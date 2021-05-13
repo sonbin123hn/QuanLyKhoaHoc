@@ -54,4 +54,9 @@ class ClassesController extends ApiController
         $top = Teacher::orderby('Rate', 'DESC')->limit(3)->get();
         return $this->formatJson(TeacherCollection::class,$top);
     }
+    public function topSubject()
+    {
+        $top = Subject::orderby('id', 'ASC')->limit(3)->get();
+        return $this->formatJson(SubjectCollection::class,$top);
+    }
 }
