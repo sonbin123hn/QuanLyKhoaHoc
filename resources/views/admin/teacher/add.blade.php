@@ -96,7 +96,8 @@
         <div class="form-group">
             <label class="col-md-12">Image</label>
             <div class="col-md-12">
-                <input type="file" accept=".png .jpg" name="image">
+                <!-- <input type="file" accept=".png .jpg" name="image"> -->
+                <input type="file" name="image">
             </div>
         </div>
         <div class="form-group">
