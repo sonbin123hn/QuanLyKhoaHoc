@@ -87,7 +87,7 @@
                 <div class="form-group">
                     <label class="col-md-12">Description</label>
                     <div class="col-md-12">
-                        <input type="text" name="description" placeholder="Hai Chau, Da Nang City" class="form-control form-control-line">
+                        <input type="text" name="description" placeholder="3 year exp..." class="form-control form-control-line">
                     </div>
                 </div>
             </div>
