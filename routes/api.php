@@ -40,7 +40,7 @@ $publicRoutes = function () {
         Route::get('/rated/list/{id}', 'App\Http\Controllers\api\v1\RatedController@lissRated');
         //chatbot
         Route::get('/class/chatbot/{id_sub}/{id}', 'App\Http\Controllers\api\v1\ClassesController@getClassLV');
-        Route::get('/class/chatbot/all/{level}', 'App\Http\Controllers\api\v1\ClassesController@getLV');
+        Route::get('/classes/chatbot/all/{level}', 'App\Http\Controllers\api\v1\ClassesController@getLV');
         Route::get('/class/top', 'App\Http\Controllers\api\v1\ClassesController@topClass');
         Route::get('/chatbot/top/teacher', 'App\Http\Controllers\api\v1\ClassesController@topTeacher');
         Route::get('/chatbot/top/subject', 'App\Http\Controllers\api\v1\ClassesController@topSubject');
