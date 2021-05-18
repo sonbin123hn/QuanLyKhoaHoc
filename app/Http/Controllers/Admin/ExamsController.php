@@ -21,7 +21,7 @@ class ExamsController extends Controller
      */
     public function index()
     {
-        $exams = Exams::paginate(3);
+        $exams = Exams::paginate(10);
         $classes = Classes::all();
         return view("admin/exams/index")->with(compact("exams","classes"));
     }
@@ -80,19 +80,6 @@ class ExamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function abc()
-    {
-        $test = Test::findOrFail(2);
-        $question = json_decode($test->id_question);
-        foreach($question as $value){
-            $array[]= $value->id; 
-        }
-        $anser = Answer::select('answers_A','answers_B','answers_C','answers_D','id_question')->whereIn('id',$array)->get();
-        foreach($anser as $val){
-            echo $val['answers_A'];
-        }
-        return view("admin/exams/test");
-    }
     public function show($id)
     {
         //

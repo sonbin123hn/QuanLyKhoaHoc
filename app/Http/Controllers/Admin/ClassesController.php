@@ -20,7 +20,7 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        $classes = Classes::paginate(3);
+        $classes = Classes::paginate(10);
         $subject = Subject::all();
         $teacher = Teacher::all();
         $course = Course::all();
@@ -34,7 +34,7 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        $classes = Classes::paginate(3);
+        $classes = Classes::paginate(10);
         $subject = Subject::all();
         $teacher = Teacher::all();
         $course = Course::all();

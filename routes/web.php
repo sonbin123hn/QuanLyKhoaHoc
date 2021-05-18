@@ -32,6 +32,8 @@ Route::group([
 ], function () {
     //Dashboard
     Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
+    //member
+    Route::get('/listMember', 'UserController@index')->name('admin.listMember');
     //profile
     Route::get('/user/profile','UserController@edit')->name('admin.profile');
     Route::post('/user/profile','UserController@update')->name('admin.profile');
@@ -79,7 +81,6 @@ Route::group([
         Route::post('/question/ajax','QuestionController@ajaxShow');
     //exams
     Route::get('/exams','ExamsController@index')->name('admin.exams');
-        Route::get('/exams/abc','ExamsController@abc');
     Route::get('/exams/add','ExamsController@create')->name('admin.exams.create');
     Route::post('/exams/add','ExamsController@store')->name('admin.exams.store');
     Route::get('/exams/update/{id}','ExamsController@edit')->name('admin.exams.edit');

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bill;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StatisticalController extends Controller
@@ -14,7 +17,10 @@ class StatisticalController extends Controller
      */
     public function index()
     {
-        //
+        $static = Bill::paginate(5);
+        $user = User::all();
+        $course = Course::all();
+        return view("admin/statistical/index",compact('static','user','course'));
     }
 
     /**

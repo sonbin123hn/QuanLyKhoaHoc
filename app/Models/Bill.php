@@ -11,5 +11,6 @@ class Bill extends Model
     protected $fillable = [
         'amount',
         'id_user',
+        'id_course',
     ];
 }

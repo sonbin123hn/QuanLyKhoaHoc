@@ -18,7 +18,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subject = Subject::paginate(3);
+        $subject = Subject::paginate(10);
         return view("admin/subject/index",compact('subject'));
     }
 

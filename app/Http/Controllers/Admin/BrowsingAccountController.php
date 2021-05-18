@@ -24,9 +24,9 @@ class BrowsingAccountController extends Controller
      */
     public function index()
     {
-        $browsings = Infor_Temp::paginate(3);
+        $browsings = Infor_Temp::paginate(10);
         $classes = Classes::all();
-        $user = User::Where('is_admin',2)->paginate(3);
+        $user = User::Where('is_admin',2)->paginate(10);
         return view('admin/browsingAccount/index')->with(compact("browsings","classes","user"));
     }
 
@@ -68,17 +68,23 @@ class BrowsingAccountController extends Controller
     public function show($id)
     {
         $data = Infor_Temp::findOrFail($id);
+        $userer = User::where("email",$data->email)->get();
+        foreach($userer as $val){
+             $id = $val['id'];   
+        }
+        
         $class = Classes::findOrFail($data->id_class);
         $check = User::where("email",$data->email)->exists();
         if($check){
             try {
                 $listClass = User_Class::create([
                     'id_class' => $data['id_class'],
-                    'id_user' => $data['id'],
+                    'id_user' => $id,
                 ]);
                 $bill = Bill::create([
                     'amount' => $data['price'],
-                    'id_user' =>  $data['id'],
+                    'id_user' =>  $id,
+                    'id_course' => $class->id_course,
                 ]);
                 //mail
                 $details = [
@@ -154,6 +160,8 @@ class BrowsingAccountController extends Controller
     public function update(BrowsingRequest $request, $id)
     {
         $data = $request->all();
+        $class = Classes::findOrFail($data['id_class']);
+        $data['price'] = $class->price;
         $browsings = Infor_Temp::findOrFail($id);
         if($browsings->update($data)){
             return redirect('/admin/browsing-account')->with('success','user infor Update is success');
@@ -174,7 +182,10 @@ class BrowsingAccountController extends Controller
     }
     public function delete($id)
     {
-        echo "ASd";
-        exit();
+        $browsings = Infor_Temp::findOrFail($id);
+        if($browsings->delete()){
+            return redirect('/admin/browsing-account')->with('success','user infor Delete is success');
+        }
+        return back()->with('error','teacher Update failed');
     }
 }

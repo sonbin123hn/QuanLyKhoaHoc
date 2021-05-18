@@ -4,7 +4,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title">classes</h4>
+            <h4 class="page-title">Receipts</h4>
         </div>
         <div class="col-7 align-self-center">
             <div class="d-flex align-items-center justify-content-end">
@@ -24,66 +24,69 @@
 @section('container-fluid')
 <div class="container-fluid">
     <div class="table-responsive">
-        @if(session('success'))
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Thông báo!</h4>
-            {{session('success')}}
-        </div>
-        @endif
-        <div class="form-group">
-            <div class="col-sm-12">
-                <button class="btn btn-success"><a style="color: white;" href="{{ url('/admin/classes/add')}}">Add classes</a></button>
-            </div>
-        </div>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Stt</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Name Member</th>
+                    <th scope="col">Name Course</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Teacher</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Course</th>
-                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($classes as $value)
+                @foreach($static as $k=>$value)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
-                    <td>{{$value['name']}}</td>
-                    <td>{{$value['price']}}</td>
-                    <td>{{$value['description']}}</td>
-                    @foreach($teacher as $val)
-                        @if($val['id'] == $value['id_teacher'])
-                        <td>{{ $val['name'] }}</td>
-                        @endif
-                    @endforeach
-                    @foreach($subject as $val)
-                        @if($val['id'] == $value['id_subject'])
-                        <td>{{ $val['name'] }}</td>
+                    <th scope="row">{{ Helper::stt($k, $static->currentPage()) }}</th>
+                    @foreach($user as $val_user)
+                        @if($value['id_user'] == $val_user['id'])
+                        <td>{{ $val_user['name'] }}</td>
                         @endif
                     @endforeach
                     @foreach($course as $val)
-                        @if($val['id'] == $value['id_course'])
+                        @if($value['id_course'] == $val['id'])
                         <td>{{ $val['name'] }}</td>
                         @endif
                     @endforeach
-                    <td>
-                        <a href="{{ route('admin.classes.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
-                    </td>
+                    <td>{{$value['amount']}}</td>
+
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        You are on page {{$classes->currentPage()}}
-        <a style="font-size: 20px;margin-right: 20px;" href="{{$classes->previousPageUrl()}}" id="previousPagebtn">
-            <</a> <a style="font-size: 20px;" href="{{$classes->nextPageUrl()}}" id="nextPagebtn">>
-        </a>
+        You are on page {{$static->currentPage()}}
+        <a style="font-size: 20px;margin-right: 20px;" href="{{$static->previousPageUrl()}}" id="previousPagebtn"><</a>
+        <a style="font-size: 20px;" href="{{$static->nextPageUrl()}}" id="nextPagebtn">></a>
     </div>
 
+    <div style="margin-top:100px;margin-right: 120px; " class="container-fluid col-8">
+        <form name='formTextbox' onSubmit="return getValue(event)">
+            <div class="form-group">
+                <label>Statistic:</label>
+                <div class="col-9 d-flex justify-content-between">
+                    <Select></Select>
+                </div>
+                <small id="emailHelp" class="form-text text-muted">If you not enter the day, it will be selected by
+                    month of the year, otherwise will be by year
+                </small>
+
+            </div>
+        </form>
+        <form name="formRadio">
+            <label for="exampleInputPassword1">Statistic select by:</label>
+            <div class="col-10 float-right">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio" value="3">
+                    <label class="form-check-label" for="inlineRadio3">Top Course</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio" value="4">
+                    <label class="form-check-label" for="inlineRadio4">Top year</label>
+                </div>
+            </div>
+        </form>
+        <h2 id="ketqua" style="display: none;"></h2>
+
+    </div>
 </div>
 @endsection
 @section('footer')
@@ -91,4 +94,116 @@
     All Rights Reserved by Nice admin. Designed and Developed by
     <a href="https://www.facebook.com/sonbin1999/">Mai La AE Team</a>.
 </footer>
+@endsection
+@section('script')
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<script>
+$(document).ready(function() {
+    $('form').submit(function(){
+        let flag = true
+        let day = document.forms['formTextbox'].day.value
+        let month = document.forms['formTextbox'].month.value
+        let year = document.forms['formTextbox'].year.value
+        if (day.toString().length < 0 || day > 31 || day.toString().length > 2)
+            flag = false
+        if (month.toString().length < 0 || month > 13 || month.toString().length > 2)
+            flag = false
+        if (year.toString().length <= 0 || year > new Date().getFullYear().toString() || year.toString().length > 4)
+            flag = false
+        if(flag){
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+            $.ajax({
+                method: "POST",
+                url: '/admin/ajax_date',
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    day: day,
+                    month: month,
+                    year: year
+                },
+                success: function(data) {
+                    $('#ketqua').text("Total sales in :"+day+"-"+month+"-"+year+" : is : "+data).show();
+                }
+            })
+        }else{
+            alert("");
+        }
+    })
+    $('.form-check-input').click(function(){
+        $check = $(this).val();
+        if($check == 1){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                method: "GET",
+                url: '/admin/ajax_everyday',
+                success: function(data) {
+                    $('#ketqua').text("Total sales of Boo's Home is : "+data).show();
+                }
+            })
+        }
+        if($check == 2){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                method: "GET",
+                url: '/admin/ajax_month',
+                success: function(data) {
+                    $('#ketqua').text(data).show();
+                }
+            })
+        }
+        if($check == 3){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                method: "GET",
+                url: '/admin/ajax_day',
+                success: function(data) {
+                    $('#ketqua').text(data).show();
+                }
+            })
+        }
+        if($check == 4){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                method: "GET",
+                url: '/admin/ajax_year',
+                success: function(data) {
+                    $('#ketqua').text(data).show();
+                }
+            })
+        }
+    })
+    
+})//document
+</script>
 @endsection

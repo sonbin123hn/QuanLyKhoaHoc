@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\updateRequest;
+use App\Models\Classes;
+use App\Models\Result;
+use App\Models\Subject;
+use App\Models\Teacher;
 use App\Models\User;
+use App\Models\User_Class;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +22,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $member = User::where('is_admin',3)->paginate(10);
+        $user_class = User_Class::all();
+        $classes = Classes::all();
+        $results = Result::all();
+        $teacher = Teacher::all();
+        $subject = Subject::all();
+        return view("admin/listMember/index")->with(compact('classes','member','user_class','results','teacher','subject'));
     }
 
     /**

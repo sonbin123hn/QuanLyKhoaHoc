@@ -21,12 +21,12 @@ class QuestionController extends Controller
         if(session()->has('question')) {
             $getSS = session()->get('question');
             $subject = Subject::all();
-            $question = Question::where("id_subject",$getSS)->paginate(3);
+            $question = Question::where("id_subject",$getSS)->paginate(10);
             $ans = Answer::all();
             return view("admin/question/index")->with(compact("subject","question","ans"));
         }else{
             $subject = Subject::all();
-            $question = Question::paginate(3);
+            $question = Question::paginate(10);
             $ans = Answer::all();
             return view("admin/question/index")->with(compact("subject","question","ans"));
         }

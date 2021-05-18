@@ -89,6 +89,13 @@ class AuthController extends ApiController
     }
     public function newRegister(NewRegisterRequest $request){
         $user = Auth::user();
+        $check = User_Class::where([
+            'id_user' => $user->id,
+            'id_class' => $request->id_class
+        ])->exists();
+        if($check){
+            return $this->sendMessage("Đã đăng kí lớp này", 422);
+        }
         $new = Infor_Temp::create([
             "name" => $user->name,
             "email" => $user->email,
