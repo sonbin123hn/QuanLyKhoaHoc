@@ -45,68 +45,106 @@
     @endif
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label class="col-md-12">Date Begin</label>
-            <div class="col-md-12">
-                <input type="date" name="date_begin" placeholder="Please enter service " class="form-control form-control-line">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Exam Date</label>
+                    <div class="col-md-12">
+                        <input type="date" name="date_begin" placeholder="" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Exam Time</label>
+                    <div class="col-md-12">
+                        <input type="time" name="time_begin" placeholder="" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Time Begin</label>
-            <div class="col-md-12">
-                <input type="time" name="time_begin" placeholder="Please enter service " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Exam Name</label>
+                    <div class="col-md-12">
+                        <input type="text" name="name" placeholder="Java Middle Test" class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Duration</label>
+                    <div class="col-md-12">
+                        <input type="number" name="duration" placeholder="90 minutes" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Name</label>
-            <div class="col-md-12">
-                <input type="text" name="name" placeholder="Please enter service " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="col-md-12">Description </label>
+                    <div class="col-md-12">
+                        <input type="text" name="description" placeholder="This is the middle test of Java" class="form-control form-control-line">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-12">Duration</label>
-            <div class="col-md-12">
-                <input type="number" name="duration" placeholder="Please enter service " class="form-control form-control-line">
+
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="col-sm-12">Select Class</label>
+                    <div class="col-sm-12">
+                        <select name="id_class" class="form-control form-control-line">
+                            <option value="">--</option>
+                            @foreach($classes as $value)
+                            <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-md-12">Easy Questions</label>
+                            <div class="col-md-12">
+                                <input type="number" name="de" placeholder="5" class="form-control form-control-line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-md-12">Normal Questions</label>
+                            <div class="col-md-12">
+                                <input type="number" name="tb" placeholder="10" class="form-control form-control-line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-md-12">Hard Questions</label>
+                            <div class="col-md-12">
+                                <input type="number" name="kho" placeholder="5" class="form-control form-control-line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="form-group">
-            <label class="col-md-12">Description </label>
-            <div class="col-md-12">
-                <input type="text" name="description" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-12">Select Classes</label>
             <div class="col-sm-12">
-                <select name="id_class" class="form-control form-control-line">
-                    <option value="">--</option>
-                    @foreach($classes as $value)
-                    <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">De</label>
-            <div class="col-md-12">
-                <input type="number" name="de" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">TRung Binh</label>
-            <div class="col-md-12">
-                <input type="number" name="tb" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-12">Kho</label>
-            <div class="col-md-12">
-                <input type="number" name="kho" placeholder="Please enter service " class="form-control form-control-line">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <button class="btn btn-success">Add Class</button>
+                <button class="btn btn-success">Add Exam</button>
             </div>
         </div>
     </form>

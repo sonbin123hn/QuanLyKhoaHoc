@@ -51,7 +51,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/classes')}}" aria-expanded="false">
                                 <i class="mdi mdi-projector-screen"></i>
-                                <span class="hide-menu">Classes Management</span>
+                                <span class="hide-menu">Class Management</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
