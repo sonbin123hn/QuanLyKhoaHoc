@@ -91,8 +91,10 @@ class SubjectController extends Controller
         $file = $request->avatar;
         if(!empty($file)){
             $file_path = UploadService::uploadImage("subject",$file);
+            $data['avatar'] = $file_path;
+        }else{
+            $data['avatar'] = $subject->avatar;
         }
-        $data['avatar'] = $file_path;
         if($subject->update($data)){
             return redirect('/admin/subject')->with('success','Subject Update is success');
         }
@@ -112,13 +114,15 @@ class SubjectController extends Controller
     public function lock($id)
     {
         $data = Subject::findOrFail($id);
-        if($data['status']){
-            $data['status'] = false;
-            $data->update();
-            return redirect('/admin/subject')->with('success','lock is success');
+        if($data['status'] == 2){
+            $data['status'] = 1;
+            if($data->update()){
+                return redirect('/admin/teacher')->with('success','unlock is success');
+            }
         }
-        $data['status'] = true;
-        $data->update();
-        return redirect('/admin/subject')->with('success','unlock is success');
+        $data['status'] = 2;
+        if($data->update()){
+            return redirect('/admin/teacher')->with('success','lock is success');
+        };
     }
 }

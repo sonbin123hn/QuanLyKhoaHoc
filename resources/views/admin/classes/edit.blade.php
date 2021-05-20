@@ -65,9 +65,16 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-md-12">Limit classes</label>
+                    <div class="col-md-12">
+                        <input type="number" name="name" value="{{ $classes->limit }}" placeholder="Please enter service " class="form-control form-control-line">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
                 <div class="form-group">
                     <label class="col-md-12">Description</label>
                     <div class="col-md-12">
@@ -76,7 +83,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
@@ -84,7 +90,9 @@
                     <div class="col-sm-12">
                         <select name="id_teacher" class="form-control form-control-line">
                             @foreach($teacher as $value)
-                            <option value="{{ $value['id'] }}" <?php echo $classes->id_teacher == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
+                                @if($value['status'] == 1)
+                                    <option value="{{ $value['id'] }}" <?php echo $classes->id_teacher == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -96,7 +104,9 @@
                     <div class="col-sm-12">
                         <select name="id_subject" class="form-control form-control-line">
                             @foreach($subject as $value)
-                            <option value="{{ $value['id'] }}" <?php echo $classes->id_subject == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
+                                @if($value['status'] == 1)
+                                    <option value="{{ $value['id'] }}" <?php echo $classes->id_subject == $value['id'] ? 'selected' : ''; ?>>{{ $value['name'] }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

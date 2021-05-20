@@ -26,6 +26,8 @@ class ClassesResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'level' => $this->level,
+            'limit' => $this->limit,
+            'curent_user' => $this->curent_user,
             'teacher' => new TeacherResource(Teacher::findOrFail($this->id_teacher)),
             'subject' => new SubjectResource(Subject::findOrFail($this->id_subject)),
             'course' => new CourseResource(Course::findOrFail($this->id_course)),

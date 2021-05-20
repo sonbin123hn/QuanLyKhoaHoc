@@ -49,16 +49,21 @@ class AuthController extends ApiController
     public function register(RegisterRequest $request)
     {
         $data = $request->all();
-        $user = Infor_Temp::create($data);
         $class = Classes::findOrFail($request->id_class);
-        $details = [
-            "name" =>  $user->name,
-            "nameclass" => $class->name,
-            "phone" => $user->phone,
-            "price"=> $class->price
-        ];
-        \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
-        return $this->formatJson(AuthResource::class, $user);
+        if($class['curent_user'] < $class['limit']){
+            $class['curent_user'] = $class['curent_user'] + 1;
+            $class->update();
+            $user = Infor_Temp::create($data);
+            $details = [
+                "name" =>  $user->name,
+                "nameclass" => $class->name,
+                "phone" => $user->phone,
+                "price"=> $class->price
+            ];
+            \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
+            return $this->formatJson(AuthResource::class, $user);
+        }
+        return $this->sendMessage("lớp đã full", 400);
     }
 
     public function me()
@@ -89,6 +94,7 @@ class AuthController extends ApiController
     }
     public function newRegister(NewRegisterRequest $request){
         $user = Auth::user();
+        $class = Classes::findOrFail($request->id_class);
         $check = User_Class::where([
             'id_user' => $user->id,
             'id_class' => $request->id_class
@@ -96,25 +102,28 @@ class AuthController extends ApiController
         if($check){
             return $this->sendMessage("Đã đăng kí lớp này", 422);
         }
-        $new = Infor_Temp::create([
-            "name" => $user->name,
-            "email" => $user->email,
-            "id_class" => $request->id_class,
-            "phone" => $user->phone, 
-            "price"=> $request->price
-        ]);
-        if($new){
-            $class = Classes::findOrFail($request->id_class);
-            $details = [
-                "name" =>  $user->name,
-                "nameclass" => $class->name,
-                "phone" => $user->phone,
-                "price"=> $class->price
-            ];
-            \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
-            return $this->formatJson(AuthResource::class, $user);
+        if($class['curent_user'] < $class['limit']){
+            $class['curent_user'] = $class['curent_user'] + 1;
+            $class->update();
+            $new = Infor_Temp::create([
+                "name" => $user->name,
+                "email" => $user->email,
+                "id_class" => $request->id_class,
+                "phone" => $user->phone, 
+                "price"=> $request->price
+            ]);
+            if($new){
+                $details = [
+                    "name" =>  $user->name,
+                    "nameclass" => $class->name,
+                    "phone" => $user->phone,
+                    "price"=> $class->price
+                ];
+                \Mail::to($user->email)->send(new \App\Mail\MyMail($details));
+                return $this->formatJson(AuthResource::class, $user);
+            }
         }
-        return $this->sendMessage("can not register", 400);
+        return $this->sendMessage("lớp đã full", 400);
     }
     public function updateUser(UpdateUserRequest $request)
     {

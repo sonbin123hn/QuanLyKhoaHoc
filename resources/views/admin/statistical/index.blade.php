@@ -59,27 +59,32 @@
     </div>
 
     <div style="margin-top:100px;margin-right: 120px; " class="container-fluid col-8">
-        <form name='formTextbox' onSubmit="return getValue(event)">
+    <form name='formTextbox' onSubmit="return getValue(event)">
             <div class="form-group">
                 <label>Statistic:</label>
                 <div class="col-9 d-flex justify-content-between">
-                    <Select></Select>
+                    <select name="" onchange="" id="course">
+                        <option value="">-- Select --</option>
+                        @foreach($course as $valC)
+                            <option value="{{$valC['id']}}">{{$valC['name']}}</option>
+                        @endforeach
+                    </select>
+                    <input type="number" name="year" id="year" class="form-control ml-1" placeholder="Enter year">
+                    <button type="submit" class="btn btn-info ml-1">Submit</button>
                 </div>
-                <small id="emailHelp" class="form-text text-muted">If you not enter the day, it will be selected by
-                    month of the year, otherwise will be by year
+                <small id="emailHelp" class="form-text text-muted">Please enter the year or select the course you want statistics for
                 </small>
-
             </div>
         </form>
         <form name="formRadio">
             <label for="exampleInputPassword1">Statistic select by:</label>
             <div class="col-10 float-right">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio" value="3">
+                    <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio" value="1">
                     <label class="form-check-label" for="inlineRadio3">Top Course</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio" value="4">
+                    <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio" value="2">
                     <label class="form-check-label" for="inlineRadio4">Top year</label>
                 </div>
             </div>
@@ -112,13 +117,7 @@
 $(document).ready(function() {
     $('form').submit(function(){
         let flag = true
-        let day = document.forms['formTextbox'].day.value
-        let month = document.forms['formTextbox'].month.value
         let year = document.forms['formTextbox'].year.value
-        if (day.toString().length < 0 || day > 31 || day.toString().length > 2)
-            flag = false
-        if (month.toString().length < 0 || month > 13 || month.toString().length > 2)
-            flag = false
         if (year.toString().length <= 0 || year > new Date().getFullYear().toString() || year.toString().length > 4)
             flag = false
         if(flag){
@@ -129,19 +128,34 @@ $(document).ready(function() {
             });
             $.ajax({
                 method: "POST",
-                url: '/admin/ajax_date',
+                url: '/admin/ajax_year',
                 data:{
                     "_token": "{{ csrf_token() }}",
-                    day: day,
-                    month: month,
                     year: year
                 },
                 success: function(data) {
-                    $('#ketqua').text("Total sales in :"+day+"-"+month+"-"+year+" : is : "+data).show();
+                    $('#ketqua').text("Total sales in :"+year+" : is : "+data).show();
                 }
             })
         }else{
             alert("");
+        }
+    })
+    $('#course').change(function(){
+        var check = $(this).val();
+        if(check){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                method: "GET",
+                url: '/admin/ajax_course/'+check+'',
+                success: function(data) {
+                    $('#ketqua').text("Total sales of Ademe is : "+data).show();
+                }
+            })
         }
     })
     $('.form-check-input').click(function(){
@@ -154,9 +168,9 @@ $(document).ready(function() {
             });
             $.ajax({
                 method: "GET",
-                url: '/admin/ajax_everyday',
+                url: '/admin/ajax_courseTop/course',
                 success: function(data) {
-                    $('#ketqua').text("Total sales of Boo's Home is : "+data).show();
+                    $('#ketqua').text(data).show();
                 }
             })
         }
@@ -168,35 +182,7 @@ $(document).ready(function() {
             });
             $.ajax({
                 method: "GET",
-                url: '/admin/ajax_month',
-                success: function(data) {
-                    $('#ketqua').text(data).show();
-                }
-            })
-        }
-        if($check == 3){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                method: "GET",
-                url: '/admin/ajax_day',
-                success: function(data) {
-                    $('#ketqua').text(data).show();
-                }
-            })
-        }
-        if($check == 4){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                method: "GET",
-                url: '/admin/ajax_year',
+                url: '/admin/ajax_courseTop/year',
                 success: function(data) {
                     $('#ketqua').text(data).show();
                 }

@@ -12,6 +12,7 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User_Class;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClassesController extends ApiController
 {
@@ -22,6 +23,7 @@ class ClassesController extends ApiController
     }
     public function allClasses()
     {
+        
         $classes = Classes::all();
         return $this->formatJson(ClassesCollection::class,$classes);
     }

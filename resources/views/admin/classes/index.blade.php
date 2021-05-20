@@ -46,6 +46,7 @@
                     <th scope="col">Teacher</th>
                     <th scope="col">Subject</th>
                     <th scope="col">Course</th>
+                    <th scope="col">Limit</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -71,6 +72,7 @@
                         <td>{{ $val['name'] }}</td>
                         @endif
                     @endforeach
+                    <td>{{$value['limit']}}</td>
                     <td>
                         <a href="{{ route('admin.classes.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
                     </td>

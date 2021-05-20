@@ -16,6 +16,8 @@ class Classes extends Model
         'id_teacher',
         'id_subject',
         "level",
+        "limit",
+        "curent_user",
     ];
     public function user_class()
     {

@@ -95,15 +95,15 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/listMember')}}" aria-expanded="false">
+                                <i class="fa fa-users"></i>
+                                <span class="hide-menu">List Member</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/browsing-account')}}" aria-expanded="false">
                                 <i class="fa fa-users"></i>
                                 <span class="hide-menu">Account Management</span>
-                            </a>
-                        </li>
-                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/receipts')}}" aria-expanded="false">
-                                <i class="mdi mdi-receipt"></i>
-                                <span class="hide-menu">Receipt</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -146,12 +146,6 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/scores')}}" aria-expanded="false">
                                 <i class="mdi mdi-poll-box"></i>
                                 <span class="hide-menu">Scores Management</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/statistical')}}" aria-expanded="false">
-                                <i class="mdi mdi-server"></i>
-                                <span class="hide-menu">Statistical</span>
                             </a>
                         </li>
                     </ul>

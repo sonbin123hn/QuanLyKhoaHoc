@@ -183,7 +183,10 @@ class BrowsingAccountController extends Controller
     public function delete($id)
     {
         $browsings = Infor_Temp::findOrFail($id);
+        $class = Classes::findOrFail($browsings->id_class);
+        $class['curent_user'] = $class['curent_user'] - 1;
         if($browsings->delete()){
+            $class->update();
             return redirect('/admin/browsing-account')->with('success','user infor Delete is success');
         }
         return back()->with('error','teacher Update failed');

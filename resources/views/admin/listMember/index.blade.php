@@ -38,7 +38,7 @@
                     @foreach($member as $k=>$value)
                     <tr>
                         <th scope="row">{{ Helper::stt($k, $member->currentPage()) }}</th>
-                        <td type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#{{$value['id']}}">{{$value['name']}}</td>
+                        <td style="color : blue" class="btn" data-toggle="modal" data-target="#{{$value['id']}}">{{$value['name']}}</td>
                         <td>{{$value['email']}}</td>
                         <td>{{$value['phone']}}</td>
                     </tr>
@@ -89,8 +89,8 @@
                                     @endforeach
                             </tbody>
                         </table>
+                        <?php $check = false; ?>
                         @foreach($results as $res)
-                            <?php $check = false; ?>
                             @if($res['id_user'] == $val['id'])
                                 <?php $check = true; ?>
                             @endif

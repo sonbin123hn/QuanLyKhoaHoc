@@ -92,8 +92,10 @@ class TeacherController extends Controller
         $file = $request->image;
         if(!empty($file)){
             $file_path = UploadService::uploadImage("teacher",$file);
+            $data['image'] = $file_path;
+        }else{
+            $data['image'] = $teacher->image;
         }
-        $data['image'] = $file_path;
         if($teacher->update($data)){
             return redirect('/admin/teacher')->with('success','teacher Update is success');
         }
@@ -113,13 +115,15 @@ class TeacherController extends Controller
     public function lock($id)
     {
         $data = Teacher::findOrFail($id);
-        if($data['status']){
-            $data['status'] = false;
-            $data->update();
-            return redirect('/admin/teacher')->with('success','lock is success');
+        if($data['status'] == 2){
+            $data['status'] = 1;
+            if($data->update()){
+                return redirect('/admin/teacher')->with('success','unlock is success');
+            }
         }
-        $data['status'] = true;
-        $data->update();
-        return redirect('/admin/teacher')->with('success','lock is success');
+        $data['status'] = 2;
+        if($data->update()){
+            return redirect('/admin/teacher')->with('success','lock is success');
+        };
     }
 }

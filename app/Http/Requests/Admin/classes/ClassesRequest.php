@@ -31,6 +31,7 @@ class ClassesRequest extends FormRequest
             'id_subject' => 'required',
             'id_course' => 'required',
             'level' => 'required',
+            'limit' => 'required',
         ];
         return $rules;
     }

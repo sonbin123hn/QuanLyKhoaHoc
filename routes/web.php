@@ -93,6 +93,11 @@ Route::group([
     Route::post('/scores/update/{id}','ScoresController@update')->name('admin.scores.update');
     //statistical
     Route::get('/statistical','StatisticalController@index')->name('admin.statistical');
+        //ajax
+        Route::get('/ajax_course/{check}','StatisticalController@course');
+        Route::get('/ajax_courseTop/course','StatisticalController@topCourse');
+        Route::get('/ajax_courseTop/year','StatisticalController@topYear');
+        Route::post('/ajax_year','StatisticalController@Year');
     Route::get('/statistical/add','StatisticalController@create')->name('admin.statistical.create');
     Route::post('/statistical/add','StatisticalController@store')->name('admin.statistical.store');
     Route::get('/statistical/update/{id}','StatisticalController@edit')->name('admin.statistical.edit');
