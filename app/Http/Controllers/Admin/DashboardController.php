@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rated;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -19,7 +22,11 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('admin/dashboard');
+        $teacher = Teacher::all();
+        $rate = Rated::orderby('id', 'DESC')->get();
+        $topTeacher = Rated::orderby('rate','DESC')->limit(5)->get();
+        $user = User::all();
+        return view('admin/dashboard',compact('teacher','rate','user','topTeacher'));
     }
    
 

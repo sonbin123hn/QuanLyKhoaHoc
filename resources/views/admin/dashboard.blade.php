@@ -152,105 +152,29 @@
                             </div>
                             <div class="comment-widgets" style="height:430px;">
                                 <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row m-t-0">
-                                    <div class="p-2">
-                                        <img src="../../admin/assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle">
-                                    </div>
-                                    <div class="comment-text w-100">
-                                        <h6 class="font-medium">James Anderson</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-rounded label-primary">Pending</span>
-                                            <span class="action-icons">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-check"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row">
-                                    <div class="p-2">
-                                        <img src="../../admin/assets/images/users/4.jpg" alt="user" width="50" class="rounded-circle">
-                                    </div>
-                                    <div class="comment-text active w-100">
-                                        <h6 class="font-medium">Michael Jorden</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                                        <div class="comment-footer ">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-success label-rounded">Approved</span>
-                                            <span class="action-icons active">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="icon-close"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart text-danger"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row">
-                                    <div class="p-2">
-                                        <img src="../../admin/assets/images/users/5.jpg" alt="user" width="50" class="rounded-circle">
-                                    </div>
-                                    <div class="comment-text w-100">
-                                        <h6 class="font-medium">Johnathan Doeting</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-rounded label-danger">Rejected</span>
-                                            <span class="action-icons">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-check"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row m-t-0">
-                                    <div class="p-2">
-                                        <img src="../../admin/assets/images/users/2.jpg" alt="user" width="50" class="rounded-circle">
-                                    </div>
-                                    <div class="comment-text w-100">
-                                        <h6 class="font-medium">Steve Jobs</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-rounded label-primary">Pending</span>
-                                            <span class="action-icons">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-check"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                                @foreach($user as $val_user)
+                                    @foreach($rate as $val_rate)
+                                            @if($val_rate['id_user'] == $val_user['id'])
+                                                <div class="d-flex flex-row comment-row m-t-0">
+                                                    <div class="p-2">
+                                                        <img src="../../admin/assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle">
+                                                    </div>
+                                                    <div class="comment-text w-100">
+                                                        <h6 class="font-medium">{{$val_user['name']}}</h6>
+                                                        <span class="m-b-15 d-block">{{$val_rate['content']}}</span>
+                                                        <div class="comment-footer">
+                                                            <span class="text-muted float-right">{{$val_rate['updated_at']->format('m-Y')}}</span>
+                                                            @foreach($teacher as $val)
+                                                                @if($val_rate['id_teacher'] == $val['id'])
+                                                                    <span class="label label-success label-rounded">To the instructor: {{$val['name']}}</span>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -258,55 +182,105 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Temp Guide</h4>
-                                <div class="d-flex align-items-center flex-row m-t-30">
-                                    <div class="display-5 text-info"><i class="wi wi-day-showers"></i> <span>73<sup>°</sup></span></div>
-                                    <div class="m-l-10">
-                                        <h3 class="m-b-0">Saturday</h3><small>Ahmedabad, India</small>
-                                    </div>
-                                </div>
-                                <table class="table no-border mini-table m-t-20">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-muted">Wind</td>
-                                            <td class="font-medium">ESE 17 mph</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-muted">Humidity</td>
-                                            <td class="font-medium">83%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-muted">Pressure</td>
-                                            <td class="font-medium">28.56 in</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-muted">Cloud Cover</td>
-                                            <td class="font-medium">78%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <ul class="row list-style-none text-center m-t-30">
-                                    <li class="col-3">
-                                        <h4 class="text-info"><i class="wi wi-day-sunny"></i></h4>
-                                        <span class="d-block text-muted">09:30</span>
-                                        <h3 class="m-t-5">70<sup>°</sup></h3>
-                                    </li>
-                                    <li class="col-3">
-                                        <h4 class="text-info"><i class="wi wi-day-cloudy"></i></h4>
-                                        <span class="d-block text-muted">11:30</span>
-                                        <h3 class="m-t-5">72<sup>°</sup></h3>
-                                    </li>
-                                    <li class="col-3">
-                                        <h4 class="text-info"><i class="wi wi-day-hail"></i></h4>
-                                        <span class="d-block text-muted">13:30</span>
-                                        <h3 class="m-t-5">75<sup>°</sup></h3>
-                                    </li>
-                                    <li class="col-3">
-                                        <h4 class="text-info"><i class="wi wi-day-sprinkle"></i></h4>
-                                        <span class="d-block text-muted">15:30</span>
-                                        <h3 class="m-t-5">76<sup>°</sup></h3>
-                                    </li>
-                                </ul>
+                                <h4 class="card-title">Top 5 lecturers</h4>
+                                @foreach($topTeacher as $k=>$val_top)
+                                    @foreach($teacher as $val_teacher)
+                                        @if($k == 0 && $val_teacher['id'] == $val_top['id_teacher'])
+                                            <div class="d-flex align-items-center flex-row m-t-30">
+                                            <img src="{{$val_teacher['image']}}" style="width: 50px;height: 50px" alt="">
+                                                <div class="m-l-10">
+                                                    <h3 class="m-b-0">{{$val_teacher['name']}}</h3>
+                                                </div>
+                                            </div>
+                                            <table class="table no-border mini-table m-t-20">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-muted">Email</td>
+                                                        <td class="font-medium">{{$val_teacher['email']}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-muted">Phone number</td>
+                                                        <td class="font-medium">{{$val_teacher['phone']}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-muted">Address</td>
+                                                        <td class="font-medium">{{$val_teacher['address']}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-muted">Rate</td>
+                                                        <td class="font-medium"><span>
+                                                                @for ($i = 1; $i <= 5; ++$i)
+                                                                    @if($i <= $val_top['rate'])
+                                                                    <i class="fa fa-star"></i>
+                                                                    @else
+                                                                    <i class="fa fa-star-o"></i>
+                                                                    @endif
+                                                                @endfor 
+                                                                </span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        <ul class="row list-style-none text-center m-t-30">
+                                        @elseif($k == 1 && $val_teacher['id'] == $val_top['id_teacher'])
+                                            <li class="col-3">
+                                                <img src="{{$val_teacher['image']}}" style="width: 50px;height: 50px" alt="">
+                                                <span class="d-block text-muted">{{$val_teacher['name']}}</span>
+                                                <h3 class="m-t-5"><span>
+                                                                @for ($i = 1; $i <= 5; ++$i)
+                                                                    @if($i <= $val_top['rate'])
+                                                                    <i style="font-size: 19px;" class="fa fa-star"></i>
+                                                                    @else
+                                                                    <i style="font-size: 19px;" class="fa fa-star-o"></i>
+                                                                    @endif
+                                                                @endfor 
+                                                                </span></h3>
+                                            </li>
+                                        @elseif($k == 2 && $val_teacher['id'] == $val_top['id_teacher'])
+                                            <li class="col-3">
+                                                <img src="{{$val_teacher['image']}}" style="width: 50px;height: 50px" alt="">
+                                                <span class="d-block text-muted">{{$val_teacher['name']}}</span>
+                                                <h3 class="m-t-5"><span>
+                                                                @for ($i = 1; $i <= 5; ++$i)
+                                                                    @if($i <= $val_top['rate'])
+                                                                    <i style="font-size: 19px;" class="fa fa-star"></i>
+                                                                    @else
+                                                                    <i style="font-size: 19px;" class="fa fa-star-o"></i>
+                                                                    @endif
+                                                                @endfor 
+                                                                </span></h3>
+                                            </li>
+                                        @elseif($k == 3 && $val_teacher['id'] == $val_top['id_teacher'])
+                                            <li class="col-3">
+                                                <img src="{{$val_teacher['image']}}" style="width: 50px;height: 50px" alt="">
+                                                <span class="d-block text-muted">{{$val_teacher['name']}}</span>
+                                                <h3 class="m-t-5"><span>
+                                                                @for ($i = 1; $i <= 5; ++$i)
+                                                                    @if($i <= $val_top['rate'])
+                                                                    <i style="font-size: 19px;" class="fa fa-star"></i>
+                                                                    @else
+                                                                    <i style="font-size: 19px;" class="fa fa-star-o"></i>
+                                                                    @endif
+                                                                @endfor 
+                                                                </span></h3>
+                                            </li>
+                                        @elseif($k == 4 && $val_teacher['id'] == $val_top['id_teacher'])
+                                            <li class="col-3">
+                                                <h4 class="text-info"><i class="wi wi-day-sunny"></i></h4>
+                                                <span class="d-block text-muted">{{$val_teacher['name']}}</span>
+                                                <h3 class="m-t-5"><span>
+                                                                @for ($i = 1; $i <= 5; ++$i)
+                                                                    @if($i <= $val_top['rate'])
+                                                                    <i style="font-size: 19px;" class="fa fa-star"></i>
+                                                                    @else
+                                                                    <i style="font-size: 19px;" class="fa fa-star-o"></i>
+                                                                    @endif
+                                                                @endfor 
+                                                                </span></h3>
+                                            </li>
+                                        </ul>
+                                        @endif
+                                    @endforeach
+                                @endforeach
                             </div>
                         </div>
 
