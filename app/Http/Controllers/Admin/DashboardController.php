@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Charts\UserChart;
 use App\Http\Controllers\Controller;
 use App\Models\Rated;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -26,7 +29,21 @@ class DashboardController extends Controller
         $rate = Rated::orderby('id', 'DESC')->get();
         $topTeacher = Rated::orderby('rate','DESC')->limit(5)->get();
         $user = User::all();
-        return view('admin/dashboard',compact('teacher','rate','user','topTeacher'));
+        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        
+        $day = $date->toDateString();     
+        $total = DB::table('bills')
+        ->whereDate('created_at', '=', $day)
+        ->sum('amount');
+        $newMember = User::where('is_admin',3)
+        ->whereDate('created_at', '=', $day)
+        ->count();
+        $allMember = User::where('is_admin',3)->count();
+        $allAdmin = User::where('is_admin',2)->count();
+
+
+
+        return view('admin/dashboard',compact('teacher','rate','user','topTeacher','total','allMember','allAdmin','newMember'));
     }
    
 

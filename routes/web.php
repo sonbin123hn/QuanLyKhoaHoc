@@ -45,6 +45,8 @@ Route::group([
     Route::post('/browsing-account/update/{id}','BrowsingAccountController@update')->name('admin.browsings.update');
     Route::get('/browsing-account/addAdmin','BrowsingAccountController@create')->name('admin.browsings.addAdmin');
     Route::post('/browsing-account/addAdmin','BrowsingAccountController@store');
+    Route::get('/browsing-account/addMember','BrowsingAccountController@showMember')->name('admin.browsings.addMember');
+    Route::post('/browsing-account/addMember','BrowsingAccountController@addMember');
     //course
     Route::get('/course','CourseController@index')->name('admin.course');
     Route::get('/course/add','CourseController@create')->name('admin.course.create');

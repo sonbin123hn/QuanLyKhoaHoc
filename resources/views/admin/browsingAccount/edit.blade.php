@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-12">Name browsings</label>
+            <label class="col-md-12">Name </label>
             <div class="col-md-12">
                 <input type="text" name="name" value="{{ $browsings->name }}" placeholder="Please enter service " class="form-control form-control-line">
             </div>

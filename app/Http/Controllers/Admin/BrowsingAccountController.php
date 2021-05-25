@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\browsing\addMemberRequest;
 use App\Http\Requests\Admin\browsing\BrowsingRequest;
 use App\Http\Requests\Admin\CreateAdminRequest;
 use App\Models\Bill;
@@ -137,7 +138,22 @@ class BrowsingAccountController extends Controller
             }
         }
     }
-
+    public function showMember()
+    {
+        $classes = Classes::all();
+        return view("admin/browsingAccount/addMember",compact('classes'));
+    }
+    public function addMember(addMemberRequest $request)
+    {
+        $data = $request->all();
+        $class = Classes::findOrFail($data['id_class']);
+        $data['price'] = $class->price;
+        $new = Infor_Temp::create($data);
+        if($new){
+            return redirect('/admin/browsing-account')->with('success','Account successfully created');
+        }
+        return back()->with('error','add member failed'); 
+    }
     /**
      * Show the form for editing the specified resource.
      *

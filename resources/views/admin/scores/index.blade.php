@@ -39,48 +39,30 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Stt</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Teacher</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Course</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Scores</th>
+                    <th scope="col">Right Answer</th>
+                    <th scope="col">Wrong Answer</th>
+                    <th scope="col">Review</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($classes as $value)
+                @foreach($scores as $res)
                 <tr>
-                    <th scope="row">{{ $value['id'] }}</th>
-                    <td>{{$value['name']}}</td>
-                    <td>{{$value['price']}}</td>
-                    <td>{{$value['description']}}</td>
-                    @foreach($teacher as $val)
-                        @if($val['id'] == $value['id_teacher'])
-                        <td>{{ $val['name'] }}</td>
-                        @endif
-                    @endforeach
-                    @foreach($subject as $val)
-                        @if($val['id'] == $value['id_subject'])
-                        <td>{{ $val['name'] }}</td>
-                        @endif
-                    @endforeach
-                    @foreach($course as $val)
-                        @if($val['id'] == $value['id_course'])
-                        <td>{{ $val['name'] }}</td>
-                        @endif
-                    @endforeach
-                    <td>
-                        <a href="{{ route('admin.classes.edit', ['id' => $value['id']]) }}"><i style="font-size:24px" class="fa">&#xf044;</i></a>
-                    </td>
+                    <td>{{$res['scores']}}</td>
+                    <td>{{$res['right_ans']}}</td>
+                    <td>{{$res['wrong_ans']}}</td>
+                    @if($res['scores'] >= 5)
+                    <td>Pass</td>
+                    @else
+                    <td>Fail</td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        You are on page {{$classes->currentPage()}}
-        <a style="font-size: 20px;margin-right: 20px;" href="{{$classes->previousPageUrl()}}" id="previousPagebtn">
-            <</a> <a style="font-size: 20px;" href="{{$classes->nextPageUrl()}}" id="nextPagebtn">>
+        You are on page {{$scores->currentPage()}}
+        <a style="font-size: 20px;margin-right: 20px;" href="{{$scores->previousPageUrl()}}" id="previousPagebtn">
+            <</a> <a style="font-size: 20px;" href="{{$scores->nextPageUrl()}}" id="nextPagebtn">>
         </a>
     </div>
 

@@ -69,12 +69,23 @@
             </tbody>
         </table>
     </div>
+    @if(Auth::user()->is_admin != 1)
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button  class="btn btn-success"><a style="color: white;" href="{{ url('/admin/browsing-account/addMember')}}">Create Member</a></button>
+        </div>
+    </div>
+    @endif
     @if(Auth::user()->is_admin == 1)
     <div class="table-responsive">
-        <div style="display: inline">
-
+        <div class="row" style="display: inline">
             <div class="form-group">
-                <div class="col-sm-12">
+                <div class="col-md-6">
+                    <button class="btn btn-success"><a style="color: white;" href="{{ url('/admin/browsing-account/addMember')}}">Create Member</a></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6">
                     <button class="btn btn-success"><a style="color: white;" href="{{ url('/admin/browsing-account/addAdmin')}}">Create Admin</a></button>
                 </div>
             </div>

@@ -37,7 +37,7 @@ class StatisticalController extends Controller
     {
         $query= Bill::select(DB::raw('id_course as course,Sum(amount) AS tongTien'))
         ->groupBy('course')
-        ->orderBy('course')
+        ->orderBy('tongTien',"DESC")
         ->limit(1)->get();
         foreach($query as $val){
             $course = Course::findOrFail($val['course']);

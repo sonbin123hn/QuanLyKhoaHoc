@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Result;
 use Illuminate\Http\Request;
 
 class ScoresController extends Controller
@@ -14,7 +15,8 @@ class ScoresController extends Controller
      */
     public function index()
     {
-        //
+        $scores = Result::paginate(10);
+        return view("admin/scores/index",compact('scores'));
     }
 
     /**
