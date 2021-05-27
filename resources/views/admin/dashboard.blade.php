@@ -92,7 +92,11 @@
                                             @if($val_rate['id_user'] == $val_user['id'])
                                                 <div class="d-flex flex-row comment-row m-t-0">
                                                     <div class="p-2">
+                                                        @if(isset($val_user['avatar']))
+                                                        <img src="{{$val_user['avatar']}}" alt="user" width="50" class="rounded-circle">
+                                                        @else
                                                         <img src="../../admin/assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle">
+                                                        @endif
                                                     </div>
                                                     <div class="comment-text w-100">
                                                         <h6 class="font-medium">{{$val_user['name']}}</h6>

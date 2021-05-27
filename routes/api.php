@@ -52,6 +52,8 @@ $publicRoutes = function () {
 
 Route::middleware([])->group($publicRoutes);
 Route::group(['prefix' => 'v1','middleware' => 'auth:api'],function(){
+    //file
+    Route::post('/images/upload', 'App\Http\Controllers\api\v1\UploadController@uploadFile');
     //auth
     Route::get('/userprofile/infor', 'App\Http\Controllers\api\v1\AuthController@me');
     Route::get('/userprofile/classes', 'App\Http\Controllers\api\v1\AuthController@userFromClass');
