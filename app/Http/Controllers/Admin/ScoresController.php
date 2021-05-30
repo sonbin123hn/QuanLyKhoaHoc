@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classes;
+use App\Models\Course;
+use App\Models\Exams;
 use App\Models\Result;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ScoresController extends Controller
@@ -16,7 +20,10 @@ class ScoresController extends Controller
     public function index()
     {
         $scores = Result::paginate(10);
-        return view("admin/scores/index",compact('scores'));
+        $user = User::all();
+        $exams = Exams::all();
+        $course = Course::all();
+        return view("admin/scores/index",compact('scores','user','exams','course'));
     }
 
     /**
@@ -37,7 +44,12 @@ class ScoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $scores = Result::where('id_class',$data['class'])->paginate(10);
+        $user = User::all();
+        $exams = Exams::all();
+        $course = Course::all();
+        return view("admin/scores/index",compact('scores','user','exams','course'));
     }
 
     /**
@@ -48,7 +60,14 @@ class ScoresController extends Controller
      */
     public function show($id)
     {
-        //
+        
+    }
+    public function class($id)
+    {
+        $class = Classes::where("id_course",$id)->get()->toArray();
+        return response()->json([
+            'class' => $class
+        ]);
     }
 
     /**

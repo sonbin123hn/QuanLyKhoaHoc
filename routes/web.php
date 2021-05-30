@@ -87,12 +87,13 @@ Route::group([
     Route::post('/exams/add','ExamsController@store')->name('admin.exams.store');
     Route::get('/exams/update/{id}','ExamsController@edit')->name('admin.exams.edit');
     Route::post('/exams/update/{id}','ExamsController@update')->name('admin.exams.update');
+        //ajax
+        Route::get('exams/ajax/{id}','ExamsController@class');
     //scores
     Route::get('/scores','ScoresController@index')->name('admin.scores');
-    Route::get('/scores/add','ScoresController@create')->name('admin.scores.create');
-    Route::post('/scores/add','ScoresController@store')->name('admin.scores.store');
-    Route::get('/scores/update/{id}','ScoresController@edit')->name('admin.scores.edit');
-    Route::post('/scores/update/{id}','ScoresController@update')->name('admin.scores.update');
+    Route::post('/scores','ScoresController@store');
+        //ajax 
+        Route::get('admin/scores/ajax/{id}','ScoresController@class');
     //statistical
     Route::get('/statistical','StatisticalController@index')->name('admin.statistical');
         //ajax

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\exams\CreateExamsRequest;
 use App\Models\Answer;
 use App\Models\Classes;
+use App\Models\Course;
 use App\Models\Exams;
 use App\Models\Question;
 use App\Models\Test;
@@ -33,8 +34,15 @@ class ExamsController extends Controller
      */
     public function create()
     {
-        $classes = Classes::all();
-        return view("admin/exams/add")->with(compact("classes"));
+        $course = Course::all();
+        return view("admin/exams/add")->with(compact("course"));
+    }
+    public function class($id)
+    {
+        $class = Classes::where("id_course",$id)->get()->toArray();
+        return response()->json([
+            'class' => $class
+        ]);
     }
 
     /**

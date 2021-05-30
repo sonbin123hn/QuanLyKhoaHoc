@@ -83,7 +83,7 @@ class BrowsingAccountController extends Controller
                     'id_user' => $id,
                 ]);
                 $bill = Bill::create([
-                    'amount' => $data['price'],
+                    'amount' => $class->price,
                     'id_user' =>  $id,
                     'id_course' => $class->id_course,
                 ]);

@@ -97,13 +97,22 @@
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
-                    <label class="col-sm-12">Select Class</label>
+                    <label class="col-sm-12">Select Couse</label>
                     <div class="col-sm-12">
-                        <select name="id_class" class="form-control form-control-line">
-                            <option value="">--</option>
-                            @foreach($classes as $value)
+                        <select class="form-control form-control-line" id="course">
+                            <option value="">-- Select Course --</option>
+                            @foreach($course as $value)
                             <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                             @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 class">
+                <div class="form-group">
+                    <label class="col-sm-12">Select Class</label>
+                    <div class="col-sm-12">
+                        <select name="id_class" class="form-control form-control-line select">
                         </select>
                     </div>
                 </div>
@@ -155,4 +164,39 @@
     All Rights Reserved by Nice admin. Designed and Developed by
     <a href="https://www.facebook.com/sonbin1999/">Mai La AE Team</a>.
 </footer>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        $(".class").hide();
+        var idClass = ""
+        $("#course").change(function() {
+            var id = $(this).val();
+            if (id == "") {
+                $(".class").hide();
+            } else {
+                $(".class").show();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    method: "GET",
+                    url: 'ajax/'+id+'',
+                    success: function(data) {
+                        var html = ""
+                        var classes = JSON.parse(JSON.stringify(data));
+                        var arr = classes['class'];
+                            Object.keys(arr).map(function(key,index){
+                                html += "<option value='"+arr[key]['id']+"'>"+arr[key]['name']+"</option>";
+                            })
+                        $(".select").html(html);
+                    }
+                })
+            }
+        })
+        
+    })
+</script>
 @endsection

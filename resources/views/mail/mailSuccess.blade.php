@@ -35,7 +35,7 @@
 			<div class="row">				
 				<p>
 					Your
-					<span style="color: rgb(255, 0, 0)">Account</span>: + email
+					<span style="color: rgb(255, 0, 0)">Account</span>: + {{ $details['email'] }}
 				</p>
 			</div>
 			<div class="row">				
