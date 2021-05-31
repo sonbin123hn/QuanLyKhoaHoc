@@ -89,6 +89,7 @@ class BrowsingAccountController extends Controller
                 ]);
                 //mail
                 $details = [
+                    "email" => $data->email,
                     "name" =>  $data->name,
                     "nameclass" => $class->name,
                     "price"=> $data['price']
@@ -123,6 +124,7 @@ class BrowsingAccountController extends Controller
                     ]);
                     //mail
                     $details = [
+                        "email" => $user->email,
                         "name" =>  $data->name,
                         "nameclass" => $class->name,
                         "price"=> $data->price
