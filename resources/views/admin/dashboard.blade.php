@@ -27,7 +27,7 @@
                 <!-- Email campaign chart -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Sales Ratio</h4>
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title m-b-5">Total income for today</h5>
@@ -95,7 +95,7 @@
                                                         @if(isset($val_user['avatar']))
                                                         <img src="{{$val_user['avatar']}}" alt="user" width="50" class="rounded-circle">
                                                         @else
-                                                        <img src="../../admin/assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle">
+                                                        <img src="/upload/82261690_1511617618991414_5685805116649635840_n.jpg" alt="user" width="50" class="rounded-circle">
                                                         @endif
                                                     </div>
                                                     <div class="comment-text w-100">
@@ -204,7 +204,7 @@
                                             </li>
                                         @elseif($k == 4 && $val_teacher['id'] == $val_top['id_teacher'])
                                             <li class="col-3">
-                                                <h4 class="text-info"><i class="wi wi-day-sunny"></i></h4>
+                                                <img src="{{$val_teacher['image']}}" style="width: 50px;height: 50px" alt="">
                                                 <span class="d-block text-muted">{{$val_teacher['name']}}</span>
                                                 <h3 class="m-t-5"><span>
                                                                 @for ($i = 1; $i <= 5; ++$i)
