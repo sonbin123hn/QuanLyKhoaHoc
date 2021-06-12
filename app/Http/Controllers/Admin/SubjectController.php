@@ -117,12 +117,12 @@ class SubjectController extends Controller
         if($data['status'] == 2){
             $data['status'] = 1;
             if($data->update()){
-                return redirect('/admin/teacher')->with('success','unlock is success');
+                return redirect('/admin/subject')->with('success','unlock is success');
             }
         }
         $data['status'] = 2;
         if($data->update()){
-            return redirect('/admin/teacher')->with('success','lock is success');
+            return redirect('/admin/subject')->with('success','lock is success');
         };
     }
 }
