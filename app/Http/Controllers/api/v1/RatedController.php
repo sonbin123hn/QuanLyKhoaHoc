@@ -49,8 +49,10 @@ class RatedController extends ApiController
         $id_user = $user->id;
         $class = Classes::where('id_teacher',$id)->get();
         foreach($class as $val){
-            $check = User_Class::where('id_user',$id_user)
-            ->orWhere('id_class',$val['id'])
+            $check = User_Class::where([
+                'id_user' => $id_user,
+                'id_class' => $val['id']
+            ])
             ->exists();
             if($check){
                 return $this->sendMessage("pass",200);
