@@ -134,7 +134,7 @@ $(document).ready(function() {
                     year: year
                 },
                 success: function(data) {
-                    $('#ketqua').text("Total sales in :"+year+" : is : "+data).show();
+                    $('#ketqua').text("Total sales in :"+year+" : is : "+data+" $").show();
                 }
             })
         }else{
@@ -153,7 +153,7 @@ $(document).ready(function() {
                 method: "GET",
                 url: '/admin/ajax_course/'+check+'',
                 success: function(data) {
-                    $('#ketqua').text("Total sales of Ademe is : "+data).show();
+                    $('#ketqua').text("Total sales of Ademe is : "+data+" $").show();
                 }
             })
         }
