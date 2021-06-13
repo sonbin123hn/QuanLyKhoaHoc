@@ -41,7 +41,7 @@ class StatisticalController extends Controller
         ->limit(1)->get();
         foreach($query as $val){
             $course = Course::findOrFail($val['course']);
-            echo "The highest turnover is the course : ".$course->name." with the amount of :".$val['tongTien']."VND";
+            echo "The highest turnover is the course : ".$course->name." with the amount of :".$val['tongTien']."$";
         }
     }
     public function year(Request $request){
@@ -51,7 +51,7 @@ class StatisticalController extends Controller
             $query = DB::table('bills')
             ->whereYear('created_at', '=', $year)
             ->sum('amount');
-            echo $query." VND";
+            echo $query." $";
         }
     }
     public function topYear()
@@ -61,7 +61,7 @@ class StatisticalController extends Controller
         ->orderBy('year')
         ->limit(1)->get();
         foreach($query as $val){
-            echo "The highest turnover is the year : ".$val['year']." with the amount of :".$val['tongTien']."VND";
+            echo "The highest turnover is the year : ".$val['year']." with the amount of :".$val['tongTien']."$";
         }
     }
     public function course($check)
