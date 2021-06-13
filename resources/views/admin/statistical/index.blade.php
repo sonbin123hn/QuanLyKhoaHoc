@@ -134,7 +134,7 @@ $(document).ready(function() {
                     year: year
                 },
                 success: function(data) {
-                    $('#ketqua').text("Total sales in :"+year+" : is : "+data+" $").show();
+                    $('#ketqua').text("Total sales in :"+year+" : is : "+data).show();
                 }
             })
         }else{
